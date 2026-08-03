@@ -1,0 +1,8 @@
+{
+  "id": "opt-out",
+  "title": "Caller opts out",
+  "business_open": true,
+  "turns": [
+    {"at_ms": 0, "text": "Do not contact me again.", "intent": "opt_out"}
+  ]
+}

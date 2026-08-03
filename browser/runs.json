@@ -1,0 +1,768 @@
+{
+  "inventory": [
+    {
+      "id": "successful-booking",
+      "title": "Grounded answer and idempotent booking"
+    },
+    {
+      "id": "caller-interruption",
+      "title": "Caller interrupts a long answer"
+    },
+    {
+      "id": "unknown-faq",
+      "title": "Unknown question transfers to a human"
+    },
+    {
+      "id": "after-hours",
+      "title": "After-hours caller receives a transfer fallback"
+    },
+    {
+      "id": "opt-out",
+      "title": "Caller opts out"
+    },
+    {
+      "id": "recovery-dead-letter",
+      "title": "Speech recovery and failed webhook"
+    }
+  ],
+  "runs": {
+    "successful-booking": {
+      "id": "call_06a7b9fb307d",
+      "scenario_id": "successful-booking",
+      "title": "Grounded answer and idempotent booking",
+      "outcome": "booked",
+      "events": [
+        {
+          "kind": "call_started",
+          "at_ms": 0,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "run_id": "call_06a7b9fb307d"
+          }
+        },
+        {
+          "kind": "stt_partial",
+          "at_ms": 35,
+          "lane": "caller",
+          "text": "How long",
+          "data": {}
+        },
+        {
+          "kind": "stt_final",
+          "at_ms": 80,
+          "lane": "caller",
+          "text": "How long is an appointment?",
+          "data": {}
+        },
+        {
+          "kind": "faq_answered",
+          "at_ms": 90,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "question": "how long is an appointment",
+            "score": 98.1
+          }
+        },
+        {
+          "kind": "assistant_response",
+          "at_ms": 120,
+          "lane": "receptionist",
+          "text": "A standard appointment lasts thirty minutes.",
+          "data": {
+            "end_ms": 824,
+            "question": "how long is an appointment",
+            "score": 98.1
+          }
+        },
+        {
+          "kind": "stt_partial",
+          "at_ms": 1835,
+          "lane": "caller",
+          "text": "Book me for",
+          "data": {}
+        },
+        {
+          "kind": "stt_final",
+          "at_ms": 1880,
+          "lane": "caller",
+          "text": "Book me for Monday at nine.",
+          "data": {}
+        },
+        {
+          "kind": "booking_created",
+          "at_ms": 1890,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "booking": {
+              "id": "book_31212940e5",
+              "lead_id": "lead_505e3c6c8b",
+              "start_utc": "2026-08-03T06:00:00+00:00",
+              "end_utc": "2026-08-03T06:30:00+00:00",
+              "timezone": "Europe/Vilnius",
+              "idempotency_key": "lead_505e3c6c8b:2026-08-03T06:00:00+00:00"
+            },
+            "crm_id": "crm_505e3c6c8b"
+          }
+        },
+        {
+          "kind": "assistant_response",
+          "at_ms": 1920,
+          "lane": "receptionist",
+          "text": "Your thirty-minute appointment is confirmed.",
+          "data": {
+            "end_ms": 2624
+          }
+        },
+        {
+          "kind": "stt_partial",
+          "at_ms": 3235,
+          "lane": "caller",
+          "text": "Please confirm",
+          "data": {}
+        },
+        {
+          "kind": "stt_final",
+          "at_ms": 3280,
+          "lane": "caller",
+          "text": "Please confirm that same booking.",
+          "data": {}
+        },
+        {
+          "kind": "booking_replayed",
+          "at_ms": 3290,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "booking": {
+              "id": "book_31212940e5",
+              "lead_id": "lead_505e3c6c8b",
+              "start_utc": "2026-08-03T06:00:00+00:00",
+              "end_utc": "2026-08-03T06:30:00+00:00",
+              "timezone": "Europe/Vilnius",
+              "idempotency_key": "lead_505e3c6c8b:2026-08-03T06:00:00+00:00"
+            },
+            "crm_id": "crm_505e3c6c8b"
+          }
+        },
+        {
+          "kind": "assistant_response",
+          "at_ms": 3320,
+          "lane": "receptionist",
+          "text": "Your thirty-minute appointment is confirmed.",
+          "data": {
+            "end_ms": 4024
+          }
+        },
+        {
+          "kind": "summary_created",
+          "at_ms": 3340,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "outcome": "booked",
+            "topics": [
+              "faq",
+              "booking"
+            ],
+            "caller": {
+              "name": "Mira Chen",
+              "email": "mira@northstar.example",
+              "phone": "+37060010001"
+            },
+            "booking": {
+              "id": "book_31212940e5",
+              "lead_id": "lead_505e3c6c8b",
+              "start_utc": "2026-08-03T06:00:00+00:00",
+              "end_utc": "2026-08-03T06:30:00+00:00",
+              "timezone": "Europe/Vilnius",
+              "idempotency_key": "lead_505e3c6c8b:2026-08-03T06:00:00+00:00"
+            },
+            "transfer_reason": null
+          }
+        },
+        {
+          "kind": "handoff_delivered",
+          "at_ms": 3360,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "state": "delivered",
+            "action_id": "279f2873-d504-48f9-925f-c0a1290c61bb"
+          }
+        }
+      ],
+      "summary": {
+        "outcome": "booked",
+        "topics": [
+          "faq",
+          "booking"
+        ],
+        "caller": {
+          "name": "Mira Chen",
+          "email": "mira@northstar.example",
+          "phone": "+37060010001"
+        },
+        "booking": {
+          "id": "book_31212940e5",
+          "lead_id": "lead_505e3c6c8b",
+          "start_utc": "2026-08-03T06:00:00+00:00",
+          "end_utc": "2026-08-03T06:30:00+00:00",
+          "timezone": "Europe/Vilnius",
+          "idempotency_key": "lead_505e3c6c8b:2026-08-03T06:00:00+00:00"
+        },
+        "transfer_reason": null
+      },
+      "metrics": {
+        "entity_accuracy": 1.0,
+        "max_response_latency_ms": 120,
+        "final_transcript_count": 3,
+        "interruption_count": 0
+      },
+      "booking": {
+        "id": "book_31212940e5",
+        "lead_id": "lead_505e3c6c8b",
+        "start_utc": "2026-08-03T06:00:00+00:00",
+        "end_utc": "2026-08-03T06:30:00+00:00",
+        "timezone": "Europe/Vilnius",
+        "idempotency_key": "lead_505e3c6c8b:2026-08-03T06:00:00+00:00"
+      },
+      "handoff_state": "delivered",
+      "handoff_action_id": "279f2873-d504-48f9-925f-c0a1290c61bb"
+    },
+    "caller-interruption": {
+      "id": "call_16769f4cc6b9",
+      "scenario_id": "caller-interruption",
+      "title": "Caller interrupts a long answer",
+      "outcome": "answered",
+      "events": [
+        {
+          "kind": "call_started",
+          "at_ms": 0,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "run_id": "call_16769f4cc6b9"
+          }
+        },
+        {
+          "kind": "stt_partial",
+          "at_ms": 35,
+          "lane": "caller",
+          "text": "Tell me about",
+          "data": {}
+        },
+        {
+          "kind": "stt_final",
+          "at_ms": 80,
+          "lane": "caller",
+          "text": "Tell me about your appointment policy.",
+          "data": {}
+        },
+        {
+          "kind": "faq_answered",
+          "at_ms": 90,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "question": "what is your appointment policy",
+            "score": 75.4
+          }
+        },
+        {
+          "kind": "assistant_response",
+          "at_ms": 120,
+          "lane": "receptionist",
+          "text": "Appointments are thirty minutes. You can reschedule before the start time, and a receptionist can help with exceptional requests.",
+          "data": {
+            "end_ms": 2184,
+            "question": "what is your appointment policy",
+            "score": 75.4
+          }
+        },
+        {
+          "kind": "assistant_interrupted",
+          "at_ms": 260,
+          "lane": "receptionist",
+          "text": "",
+          "data": {
+            "original_end_ms": 2184
+          }
+        },
+        {
+          "kind": "stt_partial",
+          "at_ms": 295,
+          "lane": "caller",
+          "text": "Actually, what",
+          "data": {}
+        },
+        {
+          "kind": "stt_final",
+          "at_ms": 340,
+          "lane": "caller",
+          "text": "Actually, what are your hours?",
+          "data": {}
+        },
+        {
+          "kind": "faq_answered",
+          "at_ms": 350,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "question": "what are your hours",
+            "score": 81.2
+          }
+        },
+        {
+          "kind": "assistant_response",
+          "at_ms": 380,
+          "lane": "receptionist",
+          "text": "We are open Monday through Friday from nine to five.",
+          "data": {
+            "end_ms": 1212,
+            "question": "what are your hours",
+            "score": 81.2
+          }
+        },
+        {
+          "kind": "summary_created",
+          "at_ms": 400,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "outcome": "answered",
+            "topics": [
+              "faq"
+            ],
+            "caller": {},
+            "booking": null,
+            "transfer_reason": null
+          }
+        },
+        {
+          "kind": "handoff_delivered",
+          "at_ms": 420,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "state": "delivered",
+            "action_id": "ed12d72e-1bff-413d-98bc-83eb6082ba65"
+          }
+        }
+      ],
+      "summary": {
+        "outcome": "answered",
+        "topics": [
+          "faq"
+        ],
+        "caller": {},
+        "booking": null,
+        "transfer_reason": null
+      },
+      "metrics": {
+        "entity_accuracy": 1.0,
+        "max_response_latency_ms": 120,
+        "final_transcript_count": 2,
+        "interruption_count": 1
+      },
+      "booking": null,
+      "handoff_state": "delivered",
+      "handoff_action_id": "ed12d72e-1bff-413d-98bc-83eb6082ba65"
+    },
+    "unknown-faq": {
+      "id": "call_42afe02e13ff",
+      "scenario_id": "unknown-faq",
+      "title": "Unknown question transfers to a human",
+      "outcome": "transfer",
+      "events": [
+        {
+          "kind": "call_started",
+          "at_ms": 0,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "run_id": "call_42afe02e13ff"
+          }
+        },
+        {
+          "kind": "stt_partial",
+          "at_ms": 35,
+          "lane": "caller",
+          "text": "Do you",
+          "data": {}
+        },
+        {
+          "kind": "stt_final",
+          "at_ms": 80,
+          "lane": "caller",
+          "text": "Do you repair submarines?",
+          "data": {}
+        },
+        {
+          "kind": "faq_not_found",
+          "at_ms": 90,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "score": 45.5
+          }
+        },
+        {
+          "kind": "human_transfer",
+          "at_ms": 100,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "reason": "faq_not_found"
+          }
+        },
+        {
+          "kind": "assistant_response",
+          "at_ms": 120,
+          "lane": "receptionist",
+          "text": "I do not have that in the approved information. I will transfer you to a person.",
+          "data": {
+            "end_ms": 1400
+          }
+        },
+        {
+          "kind": "summary_created",
+          "at_ms": 140,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "outcome": "transfer",
+            "topics": [
+              "faq"
+            ],
+            "caller": {},
+            "booking": null,
+            "transfer_reason": "faq_not_found"
+          }
+        },
+        {
+          "kind": "handoff_delivered",
+          "at_ms": 160,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "state": "delivered",
+            "action_id": "efd32214-4f9b-42a1-a832-d4ef72a2af65"
+          }
+        }
+      ],
+      "summary": {
+        "outcome": "transfer",
+        "topics": [
+          "faq"
+        ],
+        "caller": {},
+        "booking": null,
+        "transfer_reason": "faq_not_found"
+      },
+      "metrics": {
+        "entity_accuracy": 1.0,
+        "max_response_latency_ms": 120,
+        "final_transcript_count": 1,
+        "interruption_count": 0
+      },
+      "booking": null,
+      "handoff_state": "delivered",
+      "handoff_action_id": "efd32214-4f9b-42a1-a832-d4ef72a2af65"
+    },
+    "after-hours": {
+      "id": "call_2eecb7d5a049",
+      "scenario_id": "after-hours",
+      "title": "After-hours caller receives a transfer fallback",
+      "outcome": "transfer",
+      "events": [
+        {
+          "kind": "call_started",
+          "at_ms": 0,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "run_id": "call_2eecb7d5a049"
+          }
+        },
+        {
+          "kind": "stt_partial",
+          "at_ms": 35,
+          "lane": "caller",
+          "text": "I need to",
+          "data": {}
+        },
+        {
+          "kind": "stt_final",
+          "at_ms": 80,
+          "lane": "caller",
+          "text": "I need to book an appointment.",
+          "data": {}
+        },
+        {
+          "kind": "human_transfer",
+          "at_ms": 90,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "reason": "after_hours"
+          }
+        },
+        {
+          "kind": "assistant_response",
+          "at_ms": 120,
+          "lane": "receptionist",
+          "text": "The desk is closed. I will record your request for a callback.",
+          "data": {
+            "end_ms": 1112
+          }
+        },
+        {
+          "kind": "summary_created",
+          "at_ms": 140,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "outcome": "transfer",
+            "topics": [
+              "booking"
+            ],
+            "caller": {},
+            "booking": null,
+            "transfer_reason": "after_hours"
+          }
+        },
+        {
+          "kind": "handoff_suppressed",
+          "at_ms": 160,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "reason": "after_hours"
+          }
+        }
+      ],
+      "summary": {
+        "outcome": "transfer",
+        "topics": [
+          "booking"
+        ],
+        "caller": {},
+        "booking": null,
+        "transfer_reason": "after_hours"
+      },
+      "metrics": {
+        "entity_accuracy": 1.0,
+        "max_response_latency_ms": 120,
+        "final_transcript_count": 1,
+        "interruption_count": 0
+      },
+      "booking": null,
+      "handoff_state": "suppressed",
+      "handoff_action_id": null
+    },
+    "opt-out": {
+      "id": "call_e2d121de2b83",
+      "scenario_id": "opt-out",
+      "title": "Caller opts out",
+      "outcome": "opted_out",
+      "events": [
+        {
+          "kind": "call_started",
+          "at_ms": 0,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "run_id": "call_e2d121de2b83"
+          }
+        },
+        {
+          "kind": "stt_partial",
+          "at_ms": 35,
+          "lane": "caller",
+          "text": "Do not",
+          "data": {}
+        },
+        {
+          "kind": "stt_final",
+          "at_ms": 80,
+          "lane": "caller",
+          "text": "Do not contact me again.",
+          "data": {}
+        },
+        {
+          "kind": "opt_out_recorded",
+          "at_ms": 90,
+          "lane": "tool",
+          "text": "",
+          "data": {}
+        },
+        {
+          "kind": "assistant_response",
+          "at_ms": 120,
+          "lane": "receptionist",
+          "text": "Understood. I will not create a booking or follow-up.",
+          "data": {
+            "end_ms": 968
+          }
+        },
+        {
+          "kind": "summary_created",
+          "at_ms": 140,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "outcome": "opted_out",
+            "topics": [
+              "opt_out"
+            ],
+            "caller": {},
+            "booking": null,
+            "transfer_reason": "caller_opt_out"
+          }
+        },
+        {
+          "kind": "handoff_suppressed",
+          "at_ms": 160,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "reason": "caller_opt_out"
+          }
+        }
+      ],
+      "summary": {
+        "outcome": "opted_out",
+        "topics": [
+          "opt_out"
+        ],
+        "caller": {},
+        "booking": null,
+        "transfer_reason": "caller_opt_out"
+      },
+      "metrics": {
+        "entity_accuracy": 1.0,
+        "max_response_latency_ms": 120,
+        "final_transcript_count": 1,
+        "interruption_count": 0
+      },
+      "booking": null,
+      "handoff_state": "suppressed",
+      "handoff_action_id": null
+    },
+    "recovery-dead-letter": {
+      "id": "call_f27f2a932b6d",
+      "scenario_id": "recovery-dead-letter",
+      "title": "Speech recovery and failed webhook",
+      "outcome": "answered",
+      "events": [
+        {
+          "kind": "call_started",
+          "at_ms": 0,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "run_id": "call_f27f2a932b6d"
+          }
+        },
+        {
+          "kind": "provider_failure",
+          "at_ms": 0,
+          "lane": "system",
+          "text": "stt_unavailable",
+          "data": {
+            "provider": "stt",
+            "recoverable": true
+          }
+        },
+        {
+          "kind": "provider_recovered",
+          "at_ms": 400,
+          "lane": "system",
+          "text": "stt",
+          "data": {}
+        },
+        {
+          "kind": "stt_partial",
+          "at_ms": 435,
+          "lane": "caller",
+          "text": "What are",
+          "data": {}
+        },
+        {
+          "kind": "stt_final",
+          "at_ms": 480,
+          "lane": "caller",
+          "text": "What are your hours?",
+          "data": {}
+        },
+        {
+          "kind": "faq_answered",
+          "at_ms": 490,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "question": "what are your hours",
+            "score": 97.4
+          }
+        },
+        {
+          "kind": "assistant_response",
+          "at_ms": 520,
+          "lane": "receptionist",
+          "text": "We are open Monday through Friday from nine to five.",
+          "data": {
+            "end_ms": 1352,
+            "question": "what are your hours",
+            "score": 97.4
+          }
+        },
+        {
+          "kind": "summary_created",
+          "at_ms": 540,
+          "lane": "system",
+          "text": "",
+          "data": {
+            "outcome": "answered",
+            "topics": [
+              "faq"
+            ],
+            "caller": {},
+            "booking": null,
+            "transfer_reason": null
+          }
+        },
+        {
+          "kind": "handoff_dead_letter",
+          "at_ms": 560,
+          "lane": "tool",
+          "text": "",
+          "data": {
+            "state": "dead_letter",
+            "action_id": "d06f6fdd-2d36-4e76-a037-0121e1181007"
+          }
+        }
+      ],
+      "summary": {
+        "outcome": "answered",
+        "topics": [
+          "faq"
+        ],
+        "caller": {},
+        "booking": null,
+        "transfer_reason": null
+      },
+      "metrics": {
+        "entity_accuracy": 1.0,
+        "max_response_latency_ms": 120,
+        "final_transcript_count": 1,
+        "interruption_count": 0
+      },
+      "booking": null,
+      "handoff_state": "dead_letter",
+      "handoff_action_id": "d06f6fdd-2d36-4e76-a037-0121e1181007"
+    }
+  }
+}

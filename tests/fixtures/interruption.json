@@ -1,0 +1,9 @@
+{
+  "id": "caller-interruption",
+  "title": "Caller interrupts a long answer",
+  "business_open": true,
+  "turns": [
+    {"at_ms": 0, "text": "Tell me about your appointment policy.", "intent": "faq"},
+    {"at_ms": 260, "text": "Actually, what are your hours?", "intent": "faq", "interrupt": true}
+  ]
+}

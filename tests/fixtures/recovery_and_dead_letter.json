@@ -1,0 +1,10 @@
+{
+  "id": "recovery-dead-letter",
+  "title": "Speech recovery and failed webhook",
+  "business_open": true,
+  "handoff_failures": 3,
+  "turns": [
+    {"at_ms": 0, "text": "static", "intent": "failure", "failure": "stt_unavailable"},
+    {"at_ms": 400, "text": "What are your hours?", "intent": "faq", "recovery": "stt"}
+  ]
+}

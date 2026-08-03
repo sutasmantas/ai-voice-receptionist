@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FirstRing · call score</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/app.css') }}">
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="wordmark" href="/" aria-label="FirstRing home"><span class="ring-mark">1R</span><span>FirstRing</span></a>
+      <p>Receptionist operations</p>
+      <span class="mode"><i></i> scenario line ready</span>
+    </header>
+    <main>
+      <section class="scenario-strip" aria-label="Scenario controls">
+        <div><span class="eyebrow">INBOUND LINE / 01</span><h1 id="scenario-title">Grounded answer and idempotent booking</h1></div>
+        <div class="scenario-controls">
+          <label for="scenario-select">Scenario</label>
+          <select id="scenario-select">{% for scenario in scenarios %}<option value="{{ scenario.id }}">{{ scenario.title }}</option>{% endfor %}</select>
+          <button id="run-button" type="button">Run call <span>→</span></button>
+        </div>
+      </section>
+      <section class="score-sheet" aria-labelledby="score-heading">
+        <div class="score-heading">
+          <div><span class="eyebrow">LIVE EVIDENCE</span><h2 id="score-heading">CALL SCORE</h2></div>
+          <div class="run-stamp"><span id="run-outcome">BOOKED</span><small id="run-id">call pending</small></div>
+        </div>
+        <div class="time-ruler" aria-hidden="true"><span>00:00</span><span>00:01</span><span>00:02</span><span>00:03</span><span>END</span></div>
+        <div class="score-grid">
+          <div class="lane-label caller-label">Caller</div><div class="lane caller-lane" data-lane="caller"></div>
+          <div class="lane-label receptionist-label">Receptionist</div><div class="lane receptionist-lane" data-lane="receptionist"></div>
+          <div class="lane-label tool-label">Tools</div><div class="lane tool-lane" data-lane="tool"></div>
+          <div class="lane-label system-label">System</div><div class="lane system-lane" data-lane="system"></div>
+        </div>
+        <p class="score-help">Select any timed marker to inspect the exact event.</p>
+      </section>
+      <section class="lower-deck">
+        <article class="event-inspector">
+          <span class="eyebrow">SELECTED MARKER</span><h2 id="event-kind">Call started</h2>
+          <p id="event-text">The inbound scenario opened a new call run.</p><pre id="event-data">{}</pre>
+        </article>
+        <article class="outcome-ticket">
+          <div class="ticket-head"><span class="eyebrow">Outcome ticket</span><strong id="ticket-state">BOOKED</strong></div>
+          <dl>
+            <div><dt>Caller</dt><dd id="ticket-caller">Mira Chen</dd></div>
+            <div><dt>Booking</dt><dd id="ticket-booking">30 min confirmed</dd></div>
+            <div><dt>Handoff</dt><dd id="ticket-handoff">delivered</dd></div>
+            <div><dt>Entity accuracy</dt><dd id="ticket-accuracy">100%</dd></div>
+            <div><dt>Max response</dt><dd id="ticket-latency">120 ms</dd></div>
+          </dl>
+          <button id="replay-button" type="button" hidden>Replay dead letter</button>
+        </article>
+      </section>
+    </main>
+    <script id="initial-run" type="application/json">{{ initial_json | safe }}</script>
+    <script src="{{ url_for('static', path='/app.js') }}"></script>
+  </body>
+</html>

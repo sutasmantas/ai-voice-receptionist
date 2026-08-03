@@ -1,0 +1,39 @@
+{
+  "id": "successful-booking",
+  "title": "Grounded answer and idempotent booking",
+  "business_open": true,
+  "expected_entities": {
+    "name": "Mira Chen",
+    "email": "mira@northstar.example",
+    "phone": "+37060010001",
+    "timezone": "Europe/Vilnius",
+    "slot_start": "2026-08-03T06:00:00+00:00"
+  },
+  "turns": [
+    {"at_ms": 0, "text": "How long is an appointment?", "intent": "faq"},
+    {
+      "at_ms": 1800,
+      "text": "Book me for Monday at nine.",
+      "intent": "book",
+      "entities": {
+        "name": "Mira Chen",
+        "email": "mira@northstar.example",
+        "phone": "+37060010001",
+        "timezone": "Europe/Vilnius",
+        "slot_start": "2026-08-03T06:00:00+00:00"
+      }
+    },
+    {
+      "at_ms": 3200,
+      "text": "Please confirm that same booking.",
+      "intent": "book",
+      "entities": {
+        "name": "Mira Chen",
+        "email": "mira@northstar.example",
+        "phone": "+37060010001",
+        "timezone": "Europe/Vilnius",
+        "slot_start": "2026-08-03T06:00:00+00:00"
+      }
+    }
+  ]
+}
