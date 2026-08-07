@@ -68,6 +68,10 @@ source = ["firstring"]
 
 [tool.coverage.report]
 fail_under = 85
+# inspect_eval.py drives the Inspect AI harness. inspect_ai is not a declared
+# dependency and CI does not install it, so the module cannot be exercised
+# here. Measuring it would report a coverage number this workflow cannot earn.
+omit = ["*/firstring/inspect_eval.py"]
 show_missing = true
 
 [tool.ruff]
@@ -89,3 +93,11 @@ packages = ["firstring"]
 [[tool.mypy.overrides]]
 module = ["deliveryguard.*", "inspect_ai.*", "proofgrid.*", "rapidfuzz.*"]
 ignore_missing_imports = true
+
+# inspect_ai's @solver and @task decorators are untyped, and mypy's strict mode
+# treats a function wrapped by an untyped decorator as untyped too. The
+# alternative is dropping strict mode for the whole package, which would lose
+# far more than it buys.
+[[tool.mypy.overrides]]
+module = ["firstring.inspect_eval"]
+disallow_untyped_decorators = false

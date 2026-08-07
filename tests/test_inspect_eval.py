@@ -1,9 +1,21 @@
 from __future__ import annotations
 
-from inspect_ai import eval as inspect_eval
-from proofgrid.inspect_integration import import_inspect_log
+import pytest
 
-from firstring.inspect_eval import firstring_contracts
+# inspect_ai and proofgrid are not declared dependencies of this project and are
+# not installed by CI, so this module cannot collect there. Skip explicitly
+# rather than breaking collection for the whole suite. The recorded evaluation
+# artifacts live in docs/evidence/inspect/; they are committed results, not
+# something this workflow re-executes.
+inspect_ai = pytest.importorskip("inspect_ai", reason="inspect_ai is not installed")
+proofgrid_integration = pytest.importorskip(
+    "proofgrid.inspect_integration", reason="proofgrid is not installed"
+)
+
+inspect_eval = inspect_ai.eval
+import_inspect_log = proofgrid_integration.import_inspect_log
+
+from firstring.inspect_eval import firstring_contracts  # noqa: E402
 
 
 def execute(tmp_path, *, fail_open_mutant: bool = False):
