@@ -11,12 +11,12 @@ from firstring.integrations.leaddock import (
     LocalCrmAdapter,
 )
 
-WHEEL_SHA256 = "ffad11647eb44bf6f8b4e0c2306ab9466105129afca937dfa780708057fabfec"
+WHEEL_SHA256 = "3c2e98295a89b5e36c11b2fc423ef6589e1babe3f3433b261889d09ed09993e9"
 
 
 def test_deliveryguard_wheel_matches_pinned_checkpoint() -> None:
     wheel = (
-        Path(__file__).parents[1] / "vendor" / "deliveryguard-0.1.0-py3-none-any.whl"
+        Path(__file__).parents[1] / "vendor" / "deliveryguard-0.2.0-py3-none-any.whl"
     )
 
     assert hashlib.sha256(wheel.read_bytes()).hexdigest() == WHEEL_SHA256

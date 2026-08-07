@@ -17,5 +17,15 @@
   committed under `docs/screenshots/`
 - Boundaries: no real phone network, hosted inference/speech, external SaaS,
   production load, or production latency exercised
-- Next action: update central portfolio checkpoints and stop mandatory technical
-  expansion; do not begin polish or another project automatically
+- Phase 4 shared verification extension: ProofGrid wheel SHA-256
+  `8267749b224b860e6ef774f5097539bc28a3abd7e85e11900862943ef9ce1001`;
+  Inspect AI commit `cb00efcd12dfbf3e44f486648e05e54f1337fe9a`;
+  baseline 4/4 PASS; fail-open mutant 3/4 with only `unknown-faq` rejected;
+  `--require-pass` returned the expected exit code 2 for the mutant
+- Phase 4 native gate: Ruff, format check, strict mypy, 18 tests, sdist/wheel
+  build, and Twine validation PASS
+- Evidence: `docs/evidence/inspect/baseline` and
+  `docs/evidence/inspect/fail-open-mutant` preserve raw Inspect JSON logs and
+  normalized ProofGrid results; generated SQLite state is intentionally ignored
+- Next action: integrate the verified extension into local `main`; hosted
+  GitHub execution remains a deferred cross-portfolio follow-up

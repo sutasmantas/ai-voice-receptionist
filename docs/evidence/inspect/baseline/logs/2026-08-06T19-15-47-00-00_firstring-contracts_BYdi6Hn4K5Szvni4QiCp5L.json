@@ -1,0 +1,1206 @@
+{
+  "version": 2,
+  "status": "success",
+  "eval": {
+    "eval_id": "3RTtwHRwDvd5NLC9f2CqPx",
+    "run_id": "DKLZgnD4i2cC7TNW6EMXBf",
+    "created": "2026-08-06T19:15:47+00:00",
+    "task": "firstring_contracts",
+    "task_id": "BYdi6Hn4K5Szvni4QiCp5L",
+    "task_version": "1",
+    "task_file": "src/firstring/inspect_eval.py",
+    "task_display_name": "firstring_contracts",
+    "task_registry_name": "firstring_contracts",
+    "task_attribs": {},
+    "task_args": {
+      "run_dir": "docs/evidence/inspect/baseline/state",
+      "fail_open_mutant": false
+    },
+    "task_args_passed": {
+      "run_dir": "docs/evidence/inspect/baseline/state"
+    },
+    "dataset": {
+      "samples": 4,
+      "sample_ids": [
+        "successful-booking",
+        "unknown-faq",
+        "recovery-dead-letter",
+        "caller-interruption"
+      ],
+      "shuffled": false
+    },
+    "model": "mockllm/model",
+    "model_generate_config": {},
+    "model_args": {},
+    "config": {
+      "epochs": 1,
+      "fail_on_error": true,
+      "continue_on_fail": false,
+      "score_on_error": false,
+      "sandbox_cleanup": true,
+      "log_samples": true,
+      "log_realtime": true,
+      "log_images": true,
+      "log_shared": 0,
+      "score_display": true
+    },
+    "revision": {
+      "type": "git",
+      "origin": "https://github.com/sutasmantas/ai-voice-receptionist.git",
+      "commit": "79a92a4",
+      "dirty": true
+    },
+    "packages": {
+      "inspect_ai": "0.3.253.dev7+gcb00efcd1"
+    },
+    "metadata": {
+      "proofgrid_contract": "proofgrid.inspect-json-schema.v1",
+      "inspect_revision": "cb00efcd12dfbf3e44f486648e05e54f1337fe9a",
+      "mutation": null
+    },
+    "scorers": [
+      {
+        "name": "json_schema_contract",
+        "options": {},
+        "metrics": [
+          {
+            "name": "inspect_ai/mean",
+            "options": {}
+          },
+          {
+            "name": "inspect_ai/stderr",
+            "options": {}
+          }
+        ],
+        "metadata": {}
+      }
+    ]
+  },
+  "plan": {
+    "name": "plan",
+    "steps": [
+      {
+        "solver": "execute_firstring",
+        "params": {
+          "fail_open_mutant": false
+        },
+        "params_passed": {
+          "fail_open_mutant": false
+        }
+      }
+    ],
+    "config": {}
+  },
+  "results": {
+    "total_samples": 4,
+    "completed_samples": 4,
+    "scores": [
+      {
+        "name": "json_schema_contract",
+        "scorer": "json_schema_contract",
+        "scored_samples": 4,
+        "unscored_samples": 0,
+        "params": {},
+        "metrics": {
+          "mean": {
+            "name": "mean",
+            "value": 1.0,
+            "params": {}
+          },
+          "stderr": {
+            "name": "stderr",
+            "value": 0.0,
+            "params": {}
+          }
+        }
+      }
+    ]
+  },
+  "stats": {
+    "started_at": "2026-08-06T19:15:47+00:00",
+    "completed_at": "2026-08-06T19:15:50+00:00",
+    "model_usage": {},
+    "role_usage": {},
+    "connection_limit_history": []
+  },
+  "invalidated": false,
+  "tags": [],
+  "metadata": {
+    "proofgrid_contract": "proofgrid.inspect-json-schema.v1",
+    "inspect_revision": "cb00efcd12dfbf3e44f486648e05e54f1337fe9a",
+    "mutation": null
+  },
+  "samples": [
+    {
+      "id": "caller-interruption",
+      "epoch": 1,
+      "input": "Execute FirstRing scenario caller-interruption",
+      "target": "{\"properties\": {\"event_kinds\": {\"contains\": {\"const\": \"assistant_interrupted\"}, \"type\": \"array\"}, \"metrics\": {\"properties\": {\"interruption_count\": {\"minimum\": 1}}, \"required\": [\"interruption_count\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"caller-interruption\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+      "messages": [
+        {
+          "id": "8EyHECCPPVCtTnyHSPs4LX",
+          "content": "Execute FirstRing scenario caller-interruption",
+          "source": "input",
+          "role": "user"
+        }
+      ],
+      "output": {
+        "model": "firstring/deterministic-engine",
+        "choices": [
+          {
+            "message": {
+              "id": "6LyhuGpMMeuKqiFEXKoWLn",
+              "content": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"assistant_interrupted\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 2, \"interruption_count\": 1, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"caller-interruption\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}",
+              "source": "generate",
+              "role": "assistant",
+              "model": "firstring/deterministic-engine"
+            },
+            "stop_reason": "stop"
+          }
+        ],
+        "completion": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"assistant_interrupted\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 2, \"interruption_count\": 1, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"caller-interruption\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "scores": {
+        "json_schema_contract": {
+          "value": 1,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": []
+        }
+      },
+      "metadata": {
+        "fixture": "interruption.json",
+        "run_dir": "docs/evidence/inspect/baseline/state",
+        "split": "heldout",
+        "category": "turn-taking"
+      },
+      "store": {},
+      "events": [
+        {
+          "uuid": "jzJQKnVeeRru75bt9ZJzUy",
+          "span_id": "cPgtqDZU3bvaNMxrY9CCyh",
+          "timestamp": "2026-08-06T19:15:49.973377+00:00",
+          "working_start": 392754.420083,
+          "event": "span_begin",
+          "id": "cPgtqDZU3bvaNMxrY9CCyh",
+          "type": "init",
+          "name": "init"
+        },
+        {
+          "uuid": "brVikiafKMLMpxauDSjEGK",
+          "span_id": "cPgtqDZU3bvaNMxrY9CCyh",
+          "timestamp": "2026-08-06T19:15:49.973742+00:00",
+          "working_start": 392754.4204469,
+          "event": "sample_init",
+          "sample": {
+            "input": "Execute FirstRing scenario caller-interruption",
+            "target": "{\"properties\": {\"event_kinds\": {\"contains\": {\"const\": \"assistant_interrupted\"}, \"type\": \"array\"}, \"metrics\": {\"properties\": {\"interruption_count\": {\"minimum\": 1}}, \"required\": [\"interruption_count\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"caller-interruption\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+            "id": "caller-interruption",
+            "metadata": {
+              "fixture": "interruption.json",
+              "run_dir": "docs/evidence/inspect/baseline/state",
+              "split": "heldout",
+              "category": "turn-taking"
+            }
+          },
+          "state": {
+            "messages": [
+              {
+                "id": "8EyHECCPPVCtTnyHSPs4LX",
+                "content": "Execute FirstRing scenario caller-interruption",
+                "source": "input",
+                "role": "user"
+              }
+            ],
+            "tools": [],
+            "tool_choice": null,
+            "store": {},
+            "output": {
+              "model": "mockllm/model",
+              "choices": [],
+              "completion": ""
+            },
+            "completed": false,
+            "metadata": {
+              "fixture": "interruption.json",
+              "run_dir": "docs/evidence/inspect/baseline/state",
+              "split": "heldout",
+              "category": "turn-taking"
+            }
+          }
+        },
+        {
+          "uuid": "Aj8noQPaYSyvzXJrpyitGT",
+          "span_id": "cPgtqDZU3bvaNMxrY9CCyh",
+          "timestamp": "2026-08-06T19:15:49.974217+00:00",
+          "working_start": 392754.4209224,
+          "event": "span_end",
+          "id": "cPgtqDZU3bvaNMxrY9CCyh"
+        },
+        {
+          "uuid": "3oKCvEoHZxKXuZ7ifFxbh5",
+          "span_id": "H7PcyswVhAZ8Z5zDEMPzcH",
+          "timestamp": "2026-08-06T19:15:50.171117+00:00",
+          "working_start": 0.19643259997246787,
+          "event": "span_begin",
+          "id": "H7PcyswVhAZ8Z5zDEMPzcH",
+          "type": "solvers",
+          "name": "solvers"
+        },
+        {
+          "uuid": "XvauoRvZLGCgZa8aT9Q49X",
+          "span_id": "KT7ue4QCBpNucmgB59x5fy",
+          "timestamp": "2026-08-06T19:15:50.171651+00:00",
+          "working_start": 0.1969674999709241,
+          "event": "span_begin",
+          "id": "KT7ue4QCBpNucmgB59x5fy",
+          "parent_id": "H7PcyswVhAZ8Z5zDEMPzcH",
+          "type": "solver",
+          "name": "execute_firstring"
+        },
+        {
+          "uuid": "EoKgWAJPVTSfaCim7bxUzr",
+          "span_id": "KT7ue4QCBpNucmgB59x5fy",
+          "timestamp": "2026-08-06T19:15:50.216354+00:00",
+          "working_start": 0.2416734999860637,
+          "event": "state",
+          "changes": [
+            {
+              "op": "replace",
+              "path": "/output/completion",
+              "value": "attachment://02fd73c0d38d90824349a3a3bb152663",
+              "replaced": ""
+            },
+            {
+              "op": "add",
+              "path": "/output/choices/0",
+              "value": {
+                "message": {
+                  "id": "6LyhuGpMMeuKqiFEXKoWLn",
+                  "content": "attachment://02fd73c0d38d90824349a3a3bb152663",
+                  "source": "generate",
+                  "role": "assistant",
+                  "model": "firstring/deterministic-engine"
+                },
+                "stop_reason": "stop"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/output/model",
+              "value": "firstring/deterministic-engine",
+              "replaced": "mockllm/model"
+            }
+          ]
+        },
+        {
+          "uuid": "YeQg7iCxadMDaRW53haqds",
+          "span_id": "KT7ue4QCBpNucmgB59x5fy",
+          "timestamp": "2026-08-06T19:15:50.216805+00:00",
+          "working_start": 0.24212009995244443,
+          "event": "span_end",
+          "id": "KT7ue4QCBpNucmgB59x5fy"
+        },
+        {
+          "uuid": "5gXZfABT7ei83dXA5GxBEy",
+          "span_id": "H7PcyswVhAZ8Z5zDEMPzcH",
+          "timestamp": "2026-08-06T19:15:50.217054+00:00",
+          "working_start": 0.24236809997819364,
+          "event": "span_end",
+          "id": "H7PcyswVhAZ8Z5zDEMPzcH"
+        },
+        {
+          "uuid": "gsESQJMMZvRe55DEdVF6yx",
+          "span_id": "oN28CxEQbZvBFqJXfhfDVE",
+          "timestamp": "2026-08-06T19:15:50.237640+00:00",
+          "working_start": 0.26295599999139085,
+          "event": "span_begin",
+          "id": "oN28CxEQbZvBFqJXfhfDVE",
+          "type": "scorers",
+          "name": "scorers"
+        },
+        {
+          "uuid": "kKDevjXmuiHqUTdvHzCL8k",
+          "span_id": "XP8yAwb3BmKYXFzVvwzXqi",
+          "timestamp": "2026-08-06T19:15:50.238110+00:00",
+          "working_start": 0.263426499965135,
+          "event": "span_begin",
+          "id": "XP8yAwb3BmKYXFzVvwzXqi",
+          "parent_id": "oN28CxEQbZvBFqJXfhfDVE",
+          "type": "scorer",
+          "name": "json_schema_contract"
+        },
+        {
+          "uuid": "UF3SSQ3mvxejtZdjRAjm9r",
+          "span_id": "XP8yAwb3BmKYXFzVvwzXqi",
+          "timestamp": "2026-08-06T19:15:50.240996+00:00",
+          "working_start": 0.266313599946443,
+          "event": "score",
+          "score": {
+            "value": 1,
+            "explanation": "output satisfies the frozen JSON Schema oracle",
+            "metadata": {
+              "failure_class": null,
+              "error_count": 0
+            },
+            "history": []
+          },
+          "target": "{\"properties\": {\"event_kinds\": {\"contains\": {\"const\": \"assistant_interrupted\"}, \"type\": \"array\"}, \"metrics\": {\"properties\": {\"interruption_count\": {\"minimum\": 1}}, \"required\": [\"interruption_count\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"caller-interruption\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+          "intermediate": false,
+          "scorer": "json_schema_contract",
+          "scorer_args": {}
+        },
+        {
+          "uuid": "SsVtoDXhrbYZSveaPKQzUi",
+          "span_id": "XP8yAwb3BmKYXFzVvwzXqi",
+          "timestamp": "2026-08-06T19:15:50.241508+00:00",
+          "working_start": 0.2668245999957435,
+          "event": "span_end",
+          "id": "XP8yAwb3BmKYXFzVvwzXqi"
+        },
+        {
+          "uuid": "bkTTCipVxE3fnLMneamjtx",
+          "span_id": "oN28CxEQbZvBFqJXfhfDVE",
+          "timestamp": "2026-08-06T19:15:50.242020+00:00",
+          "working_start": 0.26733569998759776,
+          "event": "span_end",
+          "id": "oN28CxEQbZvBFqJXfhfDVE"
+        }
+      ],
+      "model_usage": {},
+      "role_usage": {},
+      "started_at": "2026-08-06T19:15:49.974689+00:00",
+      "completed_at": "2026-08-06T19:15:50.245076+00:00",
+      "total_time": 0.27,
+      "working_time": 0.27,
+      "uuid": "ZNahqcDEv4fvCxAsuLxgvG",
+      "error_retries": [],
+      "attachments": {
+        "02fd73c0d38d90824349a3a3bb152663": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"assistant_interrupted\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 2, \"interruption_count\": 1, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"caller-interruption\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "events_data": {
+        "messages": [],
+        "calls": []
+      },
+      "turn_count": 0
+    },
+    {
+      "id": "recovery-dead-letter",
+      "epoch": 1,
+      "input": "Execute FirstRing scenario recovery-dead-letter",
+      "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"provider_failure\"}}, {\"contains\": {\"const\": \"provider_recovered\"}}, {\"contains\": {\"const\": \"handoff_dead_letter\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"dead_letter\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"recovery-dead-letter\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\"], \"type\": \"object\"}",
+      "messages": [
+        {
+          "id": "jVpCamk28dTa3bnmHwAEcp",
+          "content": "Execute FirstRing scenario recovery-dead-letter",
+          "source": "input",
+          "role": "user"
+        }
+      ],
+      "output": {
+        "model": "firstring/deterministic-engine",
+        "choices": [
+          {
+            "message": {
+              "id": "NtKxL2x7fEUZRJsAXaofRR",
+              "content": "{\"event_kinds\": [\"call_started\", \"provider_failure\", \"provider_recovered\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_dead_letter\"], \"handoff_state\": \"dead_letter\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"recovery-dead-letter\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}",
+              "source": "generate",
+              "role": "assistant",
+              "model": "firstring/deterministic-engine"
+            },
+            "stop_reason": "stop"
+          }
+        ],
+        "completion": "{\"event_kinds\": [\"call_started\", \"provider_failure\", \"provider_recovered\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_dead_letter\"], \"handoff_state\": \"dead_letter\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"recovery-dead-letter\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "scores": {
+        "json_schema_contract": {
+          "value": 1,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": []
+        }
+      },
+      "metadata": {
+        "fixture": "recovery_and_dead_letter.json",
+        "run_dir": "docs/evidence/inspect/baseline/state",
+        "split": "heldout",
+        "category": "provider-failure"
+      },
+      "store": {},
+      "events": [
+        {
+          "uuid": "W2TirSZNaSCMSgp53ZVBwo",
+          "span_id": "Dmg3K8zjqKT3dnneW6GJB7",
+          "timestamp": "2026-08-06T19:15:49.970639+00:00",
+          "working_start": 392754.4173463,
+          "event": "span_begin",
+          "id": "Dmg3K8zjqKT3dnneW6GJB7",
+          "type": "init",
+          "name": "init"
+        },
+        {
+          "uuid": "TAtgxMDhgXzzZuXNFKeaE4",
+          "span_id": "Dmg3K8zjqKT3dnneW6GJB7",
+          "timestamp": "2026-08-06T19:15:49.971195+00:00",
+          "working_start": 392754.4179017,
+          "event": "sample_init",
+          "sample": {
+            "input": "Execute FirstRing scenario recovery-dead-letter",
+            "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"provider_failure\"}}, {\"contains\": {\"const\": \"provider_recovered\"}}, {\"contains\": {\"const\": \"handoff_dead_letter\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"dead_letter\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"recovery-dead-letter\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\"], \"type\": \"object\"}",
+            "id": "recovery-dead-letter",
+            "metadata": {
+              "fixture": "recovery_and_dead_letter.json",
+              "run_dir": "docs/evidence/inspect/baseline/state",
+              "split": "heldout",
+              "category": "provider-failure"
+            }
+          },
+          "state": {
+            "messages": [
+              {
+                "id": "jVpCamk28dTa3bnmHwAEcp",
+                "content": "Execute FirstRing scenario recovery-dead-letter",
+                "source": "input",
+                "role": "user"
+              }
+            ],
+            "tools": [],
+            "tool_choice": null,
+            "store": {},
+            "output": {
+              "model": "mockllm/model",
+              "choices": [],
+              "completion": ""
+            },
+            "completed": false,
+            "metadata": {
+              "fixture": "recovery_and_dead_letter.json",
+              "run_dir": "docs/evidence/inspect/baseline/state",
+              "split": "heldout",
+              "category": "provider-failure"
+            }
+          }
+        },
+        {
+          "uuid": "R9egbuHUDYfFmDVmLHtnGu",
+          "span_id": "Dmg3K8zjqKT3dnneW6GJB7",
+          "timestamp": "2026-08-06T19:15:49.971919+00:00",
+          "working_start": 392754.4186328,
+          "event": "span_end",
+          "id": "Dmg3K8zjqKT3dnneW6GJB7"
+        },
+        {
+          "uuid": "fFBpHsVDmLG9ZgsPRjMcTM",
+          "span_id": "5arJSDkkB7MBrzvV6mgQy8",
+          "timestamp": "2026-08-06T19:15:50.094410+00:00",
+          "working_start": 0.122002899996005,
+          "event": "span_begin",
+          "id": "5arJSDkkB7MBrzvV6mgQy8",
+          "type": "solvers",
+          "name": "solvers"
+        },
+        {
+          "uuid": "e3cefFaWFHE3i5aoBJZJBP",
+          "span_id": "4E2RMNWSHzHF8n6zU7ixrb",
+          "timestamp": "2026-08-06T19:15:50.094912+00:00",
+          "working_start": 0.12250430003041402,
+          "event": "span_begin",
+          "id": "4E2RMNWSHzHF8n6zU7ixrb",
+          "parent_id": "5arJSDkkB7MBrzvV6mgQy8",
+          "type": "solver",
+          "name": "execute_firstring"
+        },
+        {
+          "uuid": "kna6m3ZzqFqkEZuYvmjSrs",
+          "span_id": "4E2RMNWSHzHF8n6zU7ixrb",
+          "timestamp": "2026-08-06T19:15:50.169242+00:00",
+          "working_start": 0.19683870003791526,
+          "event": "state",
+          "changes": [
+            {
+              "op": "replace",
+              "path": "/output/completion",
+              "value": "attachment://c28f04cf700164b8a3a2059241998536",
+              "replaced": ""
+            },
+            {
+              "op": "add",
+              "path": "/output/choices/0",
+              "value": {
+                "message": {
+                  "id": "NtKxL2x7fEUZRJsAXaofRR",
+                  "content": "attachment://c28f04cf700164b8a3a2059241998536",
+                  "source": "generate",
+                  "role": "assistant",
+                  "model": "firstring/deterministic-engine"
+                },
+                "stop_reason": "stop"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/output/model",
+              "value": "firstring/deterministic-engine",
+              "replaced": "mockllm/model"
+            }
+          ]
+        },
+        {
+          "uuid": "jEq4fFeqDiY2UxxLvxa5gH",
+          "span_id": "4E2RMNWSHzHF8n6zU7ixrb",
+          "timestamp": "2026-08-06T19:15:50.170027+00:00",
+          "working_start": 0.1976225000107661,
+          "event": "span_end",
+          "id": "4E2RMNWSHzHF8n6zU7ixrb"
+        },
+        {
+          "uuid": "dLCbPt9FEfMHkBR3uLUR5W",
+          "span_id": "5arJSDkkB7MBrzvV6mgQy8",
+          "timestamp": "2026-08-06T19:15:50.170485+00:00",
+          "working_start": 0.19807760004187003,
+          "event": "span_end",
+          "id": "5arJSDkkB7MBrzvV6mgQy8"
+        },
+        {
+          "uuid": "5Be2xCf3g4Amge6izVvUwk",
+          "span_id": "bUDt2C86taMBHt4rf7VCMg",
+          "timestamp": "2026-08-06T19:15:50.231603+00:00",
+          "working_start": 0.2591944000450894,
+          "event": "span_begin",
+          "id": "bUDt2C86taMBHt4rf7VCMg",
+          "type": "scorers",
+          "name": "scorers"
+        },
+        {
+          "uuid": "ZxWK64uuUbrhThfRQ8kfpj",
+          "span_id": "KjpuCCztM3aZ7nTfiqYpaM",
+          "timestamp": "2026-08-06T19:15:50.231847+00:00",
+          "working_start": 0.2594381000380963,
+          "event": "span_begin",
+          "id": "KjpuCCztM3aZ7nTfiqYpaM",
+          "parent_id": "bUDt2C86taMBHt4rf7VCMg",
+          "type": "scorer",
+          "name": "json_schema_contract"
+        },
+        {
+          "uuid": "WM6UM6p8acc4UZLuGD6UxG",
+          "span_id": "KjpuCCztM3aZ7nTfiqYpaM",
+          "timestamp": "2026-08-06T19:15:50.235350+00:00",
+          "working_start": 0.2629484999924898,
+          "event": "score",
+          "score": {
+            "value": 1,
+            "explanation": "output satisfies the frozen JSON Schema oracle",
+            "metadata": {
+              "failure_class": null,
+              "error_count": 0
+            },
+            "history": []
+          },
+          "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"provider_failure\"}}, {\"contains\": {\"const\": \"provider_recovered\"}}, {\"contains\": {\"const\": \"handoff_dead_letter\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"dead_letter\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"recovery-dead-letter\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\"], \"type\": \"object\"}",
+          "intermediate": false,
+          "scorer": "json_schema_contract",
+          "scorer_args": {}
+        },
+        {
+          "uuid": "WLxStTAt3qF7REmawFbm3K",
+          "span_id": "KjpuCCztM3aZ7nTfiqYpaM",
+          "timestamp": "2026-08-06T19:15:50.236131+00:00",
+          "working_start": 0.26372660003835335,
+          "event": "span_end",
+          "id": "KjpuCCztM3aZ7nTfiqYpaM"
+        },
+        {
+          "uuid": "fEosMBGq5QV2yUMDGXUfww",
+          "span_id": "bUDt2C86taMBHt4rf7VCMg",
+          "timestamp": "2026-08-06T19:15:50.236865+00:00",
+          "working_start": 0.26445940003031865,
+          "event": "span_end",
+          "id": "bUDt2C86taMBHt4rf7VCMg"
+        }
+      ],
+      "model_usage": {},
+      "role_usage": {},
+      "started_at": "2026-08-06T19:15:49.972412+00:00",
+      "completed_at": "2026-08-06T19:15:50.244618+00:00",
+      "total_time": 0.272,
+      "working_time": 0.272,
+      "uuid": "VeKoMbZF8r3N39KDY4Rs7Y",
+      "error_retries": [],
+      "attachments": {
+        "c28f04cf700164b8a3a2059241998536": "{\"event_kinds\": [\"call_started\", \"provider_failure\", \"provider_recovered\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_dead_letter\"], \"handoff_state\": \"dead_letter\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"recovery-dead-letter\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "events_data": {
+        "messages": [],
+        "calls": []
+      },
+      "turn_count": 0
+    },
+    {
+      "id": "successful-booking",
+      "epoch": 1,
+      "input": "Execute FirstRing scenario successful-booking",
+      "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_answered\"}}, {\"contains\": {\"const\": \"booking_created\"}}, {\"contains\": {\"const\": \"booking_replayed\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"delivered\"}, \"metrics\": {\"properties\": {\"entity_accuracy\": {\"const\": 1.0}, \"max_response_latency_ms\": {\"maximum\": 250}}, \"required\": [\"entity_accuracy\", \"max_response_latency_ms\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"booked\"}, \"scenario_id\": {\"const\": \"successful-booking\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+      "messages": [
+        {
+          "id": "32qTqwv68vXiqW8qeNhrMM",
+          "content": "Execute FirstRing scenario successful-booking",
+          "source": "input",
+          "role": "user"
+        }
+      ],
+      "output": {
+        "model": "firstring/deterministic-engine",
+        "choices": [
+          {
+            "message": {
+              "id": "4HrhHhLBw8vSaxGW7xzF8i",
+              "content": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_created\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_replayed\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 3, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"booked\", \"scenario_id\": \"successful-booking\", \"summary\": {\"booking\": {\"end_utc\": \"2026-08-03T06:30:00+00:00\", \"id\": \"book_31212940e5\", \"idempotency_key\": \"lead_505e3c6c8b:2026-08-03T06:00:00+00:00\", \"lead_id\": \"lead_505e3c6c8b\", \"start_utc\": \"2026-08-03T06:00:00+00:00\", \"timezone\": \"Europe/Vilnius\"}, \"caller\": {\"email\": \"mira@northstar.example\", \"name\": \"Mira Chen\", \"phone\": \"+37060010001\"}, \"outcome\": \"booked\", \"topics\": [\"faq\", \"booking\"], \"transfer_reason\": null}}",
+              "source": "generate",
+              "role": "assistant",
+              "model": "firstring/deterministic-engine"
+            },
+            "stop_reason": "stop"
+          }
+        ],
+        "completion": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_created\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_replayed\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 3, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"booked\", \"scenario_id\": \"successful-booking\", \"summary\": {\"booking\": {\"end_utc\": \"2026-08-03T06:30:00+00:00\", \"id\": \"book_31212940e5\", \"idempotency_key\": \"lead_505e3c6c8b:2026-08-03T06:00:00+00:00\", \"lead_id\": \"lead_505e3c6c8b\", \"start_utc\": \"2026-08-03T06:00:00+00:00\", \"timezone\": \"Europe/Vilnius\"}, \"caller\": {\"email\": \"mira@northstar.example\", \"name\": \"Mira Chen\", \"phone\": \"+37060010001\"}, \"outcome\": \"booked\", \"topics\": [\"faq\", \"booking\"], \"transfer_reason\": null}}"
+      },
+      "scores": {
+        "json_schema_contract": {
+          "value": 1,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": []
+        }
+      },
+      "metadata": {
+        "fixture": "successful_booking.json",
+        "run_dir": "docs/evidence/inspect/baseline/state",
+        "split": "heldout",
+        "category": "booking"
+      },
+      "store": {},
+      "events": [
+        {
+          "uuid": "6eKowBDh47nvbux8PpGLZF",
+          "span_id": "GEKBnzzHt8275d8fMPWdwq",
+          "timestamp": "2026-08-06T19:15:49.962894+00:00",
+          "working_start": 392754.4096052,
+          "event": "span_begin",
+          "id": "GEKBnzzHt8275d8fMPWdwq",
+          "type": "init",
+          "name": "init"
+        },
+        {
+          "uuid": "5KiDvRQCt2gFUDmqib3CqX",
+          "span_id": "GEKBnzzHt8275d8fMPWdwq",
+          "timestamp": "2026-08-06T19:15:49.963791+00:00",
+          "working_start": 392754.4104993,
+          "event": "sample_init",
+          "sample": {
+            "input": "Execute FirstRing scenario successful-booking",
+            "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_answered\"}}, {\"contains\": {\"const\": \"booking_created\"}}, {\"contains\": {\"const\": \"booking_replayed\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"delivered\"}, \"metrics\": {\"properties\": {\"entity_accuracy\": {\"const\": 1.0}, \"max_response_latency_ms\": {\"maximum\": 250}}, \"required\": [\"entity_accuracy\", \"max_response_latency_ms\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"booked\"}, \"scenario_id\": {\"const\": \"successful-booking\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+            "id": "successful-booking",
+            "metadata": {
+              "fixture": "successful_booking.json",
+              "run_dir": "docs/evidence/inspect/baseline/state",
+              "split": "heldout",
+              "category": "booking"
+            }
+          },
+          "state": {
+            "messages": [
+              {
+                "id": "32qTqwv68vXiqW8qeNhrMM",
+                "content": "Execute FirstRing scenario successful-booking",
+                "source": "input",
+                "role": "user"
+              }
+            ],
+            "tools": [],
+            "tool_choice": null,
+            "store": {},
+            "output": {
+              "model": "mockllm/model",
+              "choices": [],
+              "completion": ""
+            },
+            "completed": false,
+            "metadata": {
+              "fixture": "successful_booking.json",
+              "run_dir": "docs/evidence/inspect/baseline/state",
+              "split": "heldout",
+              "category": "booking"
+            }
+          }
+        },
+        {
+          "uuid": "dJK8YGFDJccaY3DWerwEPK",
+          "span_id": "GEKBnzzHt8275d8fMPWdwq",
+          "timestamp": "2026-08-06T19:15:49.964604+00:00",
+          "working_start": 392754.4113103,
+          "event": "span_end",
+          "id": "GEKBnzzHt8275d8fMPWdwq"
+        },
+        {
+          "uuid": "BKsYMYix9duYCcxpaQSRHK",
+          "span_id": "4uCaULMjVwSbXRMcUnhiQx",
+          "timestamp": "2026-08-06T19:15:49.975342+00:00",
+          "working_start": 0.010289099998772144,
+          "event": "span_begin",
+          "id": "4uCaULMjVwSbXRMcUnhiQx",
+          "type": "solvers",
+          "name": "solvers"
+        },
+        {
+          "uuid": "cbu5ungENFBfLYu3GkCPGG",
+          "span_id": "E4AzEvRhQkzhignPouNUEg",
+          "timestamp": "2026-08-06T19:15:49.976656+00:00",
+          "working_start": 0.011602100043091923,
+          "event": "span_begin",
+          "id": "E4AzEvRhQkzhignPouNUEg",
+          "parent_id": "4uCaULMjVwSbXRMcUnhiQx",
+          "type": "solver",
+          "name": "execute_firstring"
+        },
+        {
+          "uuid": "e3JYQfF9FS2ArSkNvRDfAD",
+          "span_id": "E4AzEvRhQkzhignPouNUEg",
+          "timestamp": "2026-08-06T19:15:50.040861+00:00",
+          "working_start": 0.07581410004058853,
+          "event": "state",
+          "changes": [
+            {
+              "op": "replace",
+              "path": "/output/completion",
+              "value": "attachment://201195ed8514eb52c70e15a5a3592a56",
+              "replaced": ""
+            },
+            {
+              "op": "add",
+              "path": "/output/choices/0",
+              "value": {
+                "message": {
+                  "id": "4HrhHhLBw8vSaxGW7xzF8i",
+                  "content": "attachment://201195ed8514eb52c70e15a5a3592a56",
+                  "source": "generate",
+                  "role": "assistant",
+                  "model": "firstring/deterministic-engine"
+                },
+                "stop_reason": "stop"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/output/model",
+              "value": "firstring/deterministic-engine",
+              "replaced": "mockllm/model"
+            }
+          ]
+        },
+        {
+          "uuid": "2vAfmqsjocyESbJiVQEE6j",
+          "span_id": "E4AzEvRhQkzhignPouNUEg",
+          "timestamp": "2026-08-06T19:15:50.041828+00:00",
+          "working_start": 0.07677870005136356,
+          "event": "span_end",
+          "id": "E4AzEvRhQkzhignPouNUEg"
+        },
+        {
+          "uuid": "YmgdwF9vNeAiXQy6c9X2eQ",
+          "span_id": "4uCaULMjVwSbXRMcUnhiQx",
+          "timestamp": "2026-08-06T19:15:50.042375+00:00",
+          "working_start": 0.0773242000141181,
+          "event": "span_end",
+          "id": "4uCaULMjVwSbXRMcUnhiQx"
+        },
+        {
+          "uuid": "mr43vh7PEMpitZTvY9fLtu",
+          "span_id": "hA27zGUZKZL8nL54wY2xpG",
+          "timestamp": "2026-08-06T19:15:50.218344+00:00",
+          "working_start": 0.2532926000421867,
+          "event": "span_begin",
+          "id": "hA27zGUZKZL8nL54wY2xpG",
+          "type": "scorers",
+          "name": "scorers"
+        },
+        {
+          "uuid": "7kzWePFiZBZX8MUAuzfygW",
+          "span_id": "fYvR6WAe5xYohMfNG7LmUx",
+          "timestamp": "2026-08-06T19:15:50.218806+00:00",
+          "working_start": 0.2537529999972321,
+          "event": "span_begin",
+          "id": "fYvR6WAe5xYohMfNG7LmUx",
+          "parent_id": "hA27zGUZKZL8nL54wY2xpG",
+          "type": "scorer",
+          "name": "json_schema_contract"
+        },
+        {
+          "uuid": "7f3z5vQAY8eCrFjM45ySrr",
+          "span_id": "fYvR6WAe5xYohMfNG7LmUx",
+          "timestamp": "2026-08-06T19:15:50.223554+00:00",
+          "working_start": 0.2585044000297785,
+          "event": "score",
+          "score": {
+            "value": 1,
+            "explanation": "output satisfies the frozen JSON Schema oracle",
+            "metadata": {
+              "failure_class": null,
+              "error_count": 0
+            },
+            "history": []
+          },
+          "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_answered\"}}, {\"contains\": {\"const\": \"booking_created\"}}, {\"contains\": {\"const\": \"booking_replayed\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"delivered\"}, \"metrics\": {\"properties\": {\"entity_accuracy\": {\"const\": 1.0}, \"max_response_latency_ms\": {\"maximum\": 250}}, \"required\": [\"entity_accuracy\", \"max_response_latency_ms\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"booked\"}, \"scenario_id\": {\"const\": \"successful-booking\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+          "intermediate": false,
+          "scorer": "json_schema_contract",
+          "scorer_args": {}
+        },
+        {
+          "uuid": "2gHQ3YocgHmQrxePvRR3GD",
+          "span_id": "fYvR6WAe5xYohMfNG7LmUx",
+          "timestamp": "2026-08-06T19:15:50.224484+00:00",
+          "working_start": 0.25943350000306964,
+          "event": "span_end",
+          "id": "fYvR6WAe5xYohMfNG7LmUx"
+        },
+        {
+          "uuid": "NoG8zKrVXJ96i3z5Np6Abf",
+          "span_id": "hA27zGUZKZL8nL54wY2xpG",
+          "timestamp": "2026-08-06T19:15:50.225002+00:00",
+          "working_start": 0.25995010003680363,
+          "event": "span_end",
+          "id": "hA27zGUZKZL8nL54wY2xpG"
+        }
+      ],
+      "model_usage": {},
+      "role_usage": {},
+      "started_at": "2026-08-06T19:15:49.965058+00:00",
+      "completed_at": "2026-08-06T19:15:50.243039+00:00",
+      "total_time": 0.278,
+      "working_time": 0.278,
+      "uuid": "aXPEzzKzYj5jRXHnFfR4o2",
+      "error_retries": [],
+      "attachments": {
+        "201195ed8514eb52c70e15a5a3592a56": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_created\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_replayed\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 3, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"booked\", \"scenario_id\": \"successful-booking\", \"summary\": {\"booking\": {\"end_utc\": \"2026-08-03T06:30:00+00:00\", \"id\": \"book_31212940e5\", \"idempotency_key\": \"lead_505e3c6c8b:2026-08-03T06:00:00+00:00\", \"lead_id\": \"lead_505e3c6c8b\", \"start_utc\": \"2026-08-03T06:00:00+00:00\", \"timezone\": \"Europe/Vilnius\"}, \"caller\": {\"email\": \"mira@northstar.example\", \"name\": \"Mira Chen\", \"phone\": \"+37060010001\"}, \"outcome\": \"booked\", \"topics\": [\"faq\", \"booking\"], \"transfer_reason\": null}}"
+      },
+      "events_data": {
+        "messages": [],
+        "calls": []
+      },
+      "turn_count": 0
+    },
+    {
+      "id": "unknown-faq",
+      "epoch": 1,
+      "input": "Execute FirstRing scenario unknown-faq",
+      "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_not_found\"}}, {\"contains\": {\"const\": \"human_transfer\"}}], \"type\": \"array\"}, \"outcome\": {\"const\": \"transfer\"}, \"scenario_id\": {\"const\": \"unknown-faq\"}, \"summary\": {\"properties\": {\"transfer_reason\": {\"const\": \"faq_not_found\"}}, \"required\": [\"transfer_reason\"], \"type\": \"object\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"summary\"], \"type\": \"object\"}",
+      "messages": [
+        {
+          "id": "RGcEQrRoWb9JbGBcAyyfeh",
+          "content": "Execute FirstRing scenario unknown-faq",
+          "source": "input",
+          "role": "user"
+        }
+      ],
+      "output": {
+        "model": "firstring/deterministic-engine",
+        "choices": [
+          {
+            "message": {
+              "id": "3EJvF8M6AEtZjPnsjEugBN",
+              "content": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_not_found\", \"human_transfer\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"transfer\", \"scenario_id\": \"unknown-faq\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"transfer\", \"topics\": [\"faq\"], \"transfer_reason\": \"faq_not_found\"}}",
+              "source": "generate",
+              "role": "assistant",
+              "model": "firstring/deterministic-engine"
+            },
+            "stop_reason": "stop"
+          }
+        ],
+        "completion": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_not_found\", \"human_transfer\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"transfer\", \"scenario_id\": \"unknown-faq\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"transfer\", \"topics\": [\"faq\"], \"transfer_reason\": \"faq_not_found\"}}"
+      },
+      "scores": {
+        "json_schema_contract": {
+          "value": 1,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": []
+        }
+      },
+      "metadata": {
+        "fixture": "unknown_faq.json",
+        "run_dir": "docs/evidence/inspect/baseline/state",
+        "split": "heldout",
+        "category": "grounding-failure"
+      },
+      "store": {},
+      "events": [
+        {
+          "uuid": "kbj4W7XkrQz5qQ9zsFEzjs",
+          "span_id": "47vBhQFhLmdnRnUrEXB62H",
+          "timestamp": "2026-08-06T19:15:49.966249+00:00",
+          "working_start": 392754.4129545,
+          "event": "span_begin",
+          "id": "47vBhQFhLmdnRnUrEXB62H",
+          "type": "init",
+          "name": "init"
+        },
+        {
+          "uuid": "XxtUXPbhhjzeAw5JSWQxR9",
+          "span_id": "47vBhQFhLmdnRnUrEXB62H",
+          "timestamp": "2026-08-06T19:15:49.966998+00:00",
+          "working_start": 392754.4137068,
+          "event": "sample_init",
+          "sample": {
+            "input": "Execute FirstRing scenario unknown-faq",
+            "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_not_found\"}}, {\"contains\": {\"const\": \"human_transfer\"}}], \"type\": \"array\"}, \"outcome\": {\"const\": \"transfer\"}, \"scenario_id\": {\"const\": \"unknown-faq\"}, \"summary\": {\"properties\": {\"transfer_reason\": {\"const\": \"faq_not_found\"}}, \"required\": [\"transfer_reason\"], \"type\": \"object\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"summary\"], \"type\": \"object\"}",
+            "id": "unknown-faq",
+            "metadata": {
+              "fixture": "unknown_faq.json",
+              "run_dir": "docs/evidence/inspect/baseline/state",
+              "split": "heldout",
+              "category": "grounding-failure"
+            }
+          },
+          "state": {
+            "messages": [
+              {
+                "id": "RGcEQrRoWb9JbGBcAyyfeh",
+                "content": "Execute FirstRing scenario unknown-faq",
+                "source": "input",
+                "role": "user"
+              }
+            ],
+            "tools": [],
+            "tool_choice": null,
+            "store": {},
+            "output": {
+              "model": "mockllm/model",
+              "choices": [],
+              "completion": ""
+            },
+            "completed": false,
+            "metadata": {
+              "fixture": "unknown_faq.json",
+              "run_dir": "docs/evidence/inspect/baseline/state",
+              "split": "heldout",
+              "category": "grounding-failure"
+            }
+          }
+        },
+        {
+          "uuid": "McscCaRs6VfuJZ5ocz6DQT",
+          "span_id": "47vBhQFhLmdnRnUrEXB62H",
+          "timestamp": "2026-08-06T19:15:49.968052+00:00",
+          "working_start": 392754.4147579,
+          "event": "span_end",
+          "id": "47vBhQFhLmdnRnUrEXB62H"
+        },
+        {
+          "uuid": "i7WLzV4MzfGTvRBYtfrrjN",
+          "span_id": "jN6pu9Bpson4FXfoNBoGdY",
+          "timestamp": "2026-08-06T19:15:50.043340+00:00",
+          "working_start": 0.07448539999313653,
+          "event": "span_begin",
+          "id": "jN6pu9Bpson4FXfoNBoGdY",
+          "type": "solvers",
+          "name": "solvers"
+        },
+        {
+          "uuid": "XcsK29NMVigorwqrjA3cq5",
+          "span_id": "9hekbvMnS6gEeGcQk6nESE",
+          "timestamp": "2026-08-06T19:15:50.043719+00:00",
+          "working_start": 0.07486340001923963,
+          "event": "span_begin",
+          "id": "9hekbvMnS6gEeGcQk6nESE",
+          "parent_id": "jN6pu9Bpson4FXfoNBoGdY",
+          "type": "solver",
+          "name": "execute_firstring"
+        },
+        {
+          "uuid": "WMozCTyRGP2MS8Z4BwfTg6",
+          "span_id": "9hekbvMnS6gEeGcQk6nESE",
+          "timestamp": "2026-08-06T19:15:50.092397+00:00",
+          "working_start": 0.12354599998798221,
+          "event": "state",
+          "changes": [
+            {
+              "op": "replace",
+              "path": "/output/completion",
+              "value": "attachment://30323af6672bb055803daa4cd337f32c",
+              "replaced": ""
+            },
+            {
+              "op": "add",
+              "path": "/output/choices/0",
+              "value": {
+                "message": {
+                  "id": "3EJvF8M6AEtZjPnsjEugBN",
+                  "content": "attachment://30323af6672bb055803daa4cd337f32c",
+                  "source": "generate",
+                  "role": "assistant",
+                  "model": "firstring/deterministic-engine"
+                },
+                "stop_reason": "stop"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/output/model",
+              "value": "firstring/deterministic-engine",
+              "replaced": "mockllm/model"
+            }
+          ]
+        },
+        {
+          "uuid": "S93yFfG3eop79Fh2kyNq9s",
+          "span_id": "9hekbvMnS6gEeGcQk6nESE",
+          "timestamp": "2026-08-06T19:15:50.093152+00:00",
+          "working_start": 0.124299900024198,
+          "event": "span_end",
+          "id": "9hekbvMnS6gEeGcQk6nESE"
+        },
+        {
+          "uuid": "Cibka8VaqnsCcBHDTsxLnz",
+          "span_id": "jN6pu9Bpson4FXfoNBoGdY",
+          "timestamp": "2026-08-06T19:15:50.093657+00:00",
+          "working_start": 0.12480210000649095,
+          "event": "span_end",
+          "id": "jN6pu9Bpson4FXfoNBoGdY"
+        },
+        {
+          "uuid": "BEqXsNhC4P9TSFYMoF2YRf",
+          "span_id": "msKk9cVa8Cs5L3MCcXLKYm",
+          "timestamp": "2026-08-06T19:15:50.225723+00:00",
+          "working_start": 0.2568679000250995,
+          "event": "span_begin",
+          "id": "msKk9cVa8Cs5L3MCcXLKYm",
+          "type": "scorers",
+          "name": "scorers"
+        },
+        {
+          "uuid": "ddeosHLoPQyS5jrN2dJJr9",
+          "span_id": "FHxD4huuvFuChsRgCwnzTM",
+          "timestamp": "2026-08-06T19:15:50.226155+00:00",
+          "working_start": 0.2572994999936782,
+          "event": "span_begin",
+          "id": "FHxD4huuvFuChsRgCwnzTM",
+          "parent_id": "msKk9cVa8Cs5L3MCcXLKYm",
+          "type": "scorer",
+          "name": "json_schema_contract"
+        },
+        {
+          "uuid": "FTmnPGx9akQRyD9t8EkYHy",
+          "span_id": "FHxD4huuvFuChsRgCwnzTM",
+          "timestamp": "2026-08-06T19:15:50.229715+00:00",
+          "working_start": 0.2608616999932565,
+          "event": "score",
+          "score": {
+            "value": 1,
+            "explanation": "output satisfies the frozen JSON Schema oracle",
+            "metadata": {
+              "failure_class": null,
+              "error_count": 0
+            },
+            "history": []
+          },
+          "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_not_found\"}}, {\"contains\": {\"const\": \"human_transfer\"}}], \"type\": \"array\"}, \"outcome\": {\"const\": \"transfer\"}, \"scenario_id\": {\"const\": \"unknown-faq\"}, \"summary\": {\"properties\": {\"transfer_reason\": {\"const\": \"faq_not_found\"}}, \"required\": [\"transfer_reason\"], \"type\": \"object\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"summary\"], \"type\": \"object\"}",
+          "intermediate": false,
+          "scorer": "json_schema_contract",
+          "scorer_args": {}
+        },
+        {
+          "uuid": "Tqgce5mZkmeLGQcmgbaimS",
+          "span_id": "FHxD4huuvFuChsRgCwnzTM",
+          "timestamp": "2026-08-06T19:15:50.230405+00:00",
+          "working_start": 0.2615501999971457,
+          "event": "span_end",
+          "id": "FHxD4huuvFuChsRgCwnzTM"
+        },
+        {
+          "uuid": "Src93BAzhrGgQj52yimws8",
+          "span_id": "msKk9cVa8Cs5L3MCcXLKYm",
+          "timestamp": "2026-08-06T19:15:50.230943+00:00",
+          "working_start": 0.2620885000214912,
+          "event": "span_end",
+          "id": "msKk9cVa8Cs5L3MCcXLKYm"
+        }
+      ],
+      "model_usage": {},
+      "role_usage": {},
+      "started_at": "2026-08-06T19:15:49.968863+00:00",
+      "completed_at": "2026-08-06T19:15:50.244048+00:00",
+      "total_time": 0.275,
+      "working_time": 0.275,
+      "uuid": "AgE7xcPAMzhoNK5qenrVkT",
+      "error_retries": [],
+      "attachments": {
+        "30323af6672bb055803daa4cd337f32c": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_not_found\", \"human_transfer\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"transfer\", \"scenario_id\": \"unknown-faq\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"transfer\", \"topics\": [\"faq\"], \"transfer_reason\": \"faq_not_found\"}}"
+      },
+      "events_data": {
+        "messages": [],
+        "calls": []
+      },
+      "turn_count": 0
+    }
+  ],
+  "reductions": [
+    {
+      "scorer": "json_schema_contract",
+      "samples": [
+        {
+          "value": 1.0,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": [],
+          "sample_id": "successful-booking"
+        },
+        {
+          "value": 1.0,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": [],
+          "sample_id": "unknown-faq"
+        },
+        {
+          "value": 1.0,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": [],
+          "sample_id": "recovery-dead-letter"
+        },
+        {
+          "value": 1.0,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": [],
+          "sample_id": "caller-interruption"
+        }
+      ]
+    }
+  ]
+}

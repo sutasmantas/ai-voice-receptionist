@@ -1,0 +1,78 @@
+{
+  "caller-interruption": {
+    "type": "object",
+    "properties": {
+      "scenario_id": {"const": "caller-interruption"},
+      "outcome": {"const": "answered"},
+      "event_kinds": {"type": "array", "contains": {"const": "assistant_interrupted"}},
+      "metrics": {
+        "type": "object",
+        "properties": {"interruption_count": {"minimum": 1}},
+        "required": ["interruption_count"]
+      }
+    },
+    "required": ["scenario_id", "outcome", "event_kinds", "metrics"]
+  },
+  "recovery-dead-letter": {
+    "type": "object",
+    "properties": {
+      "scenario_id": {"const": "recovery-dead-letter"},
+      "outcome": {"const": "answered"},
+      "handoff_state": {"const": "dead_letter"},
+      "event_kinds": {
+        "type": "array",
+        "allOf": [
+          {"contains": {"const": "provider_failure"}},
+          {"contains": {"const": "provider_recovered"}},
+          {"contains": {"const": "handoff_dead_letter"}}
+        ]
+      }
+    },
+    "required": ["scenario_id", "outcome", "handoff_state", "event_kinds"]
+  },
+  "successful-booking": {
+    "type": "object",
+    "properties": {
+      "scenario_id": {"const": "successful-booking"},
+      "outcome": {"const": "booked"},
+      "handoff_state": {"const": "delivered"},
+      "event_kinds": {
+        "type": "array",
+        "allOf": [
+          {"contains": {"const": "faq_answered"}},
+          {"contains": {"const": "booking_created"}},
+          {"contains": {"const": "booking_replayed"}}
+        ]
+      },
+      "metrics": {
+        "type": "object",
+        "properties": {
+          "entity_accuracy": {"const": 1.0},
+          "max_response_latency_ms": {"maximum": 250}
+        },
+        "required": ["entity_accuracy", "max_response_latency_ms"]
+      }
+    },
+    "required": ["scenario_id", "outcome", "handoff_state", "event_kinds", "metrics"]
+  },
+  "unknown-faq": {
+    "type": "object",
+    "properties": {
+      "scenario_id": {"const": "unknown-faq"},
+      "outcome": {"const": "transfer"},
+      "event_kinds": {
+        "type": "array",
+        "allOf": [
+          {"contains": {"const": "faq_not_found"}},
+          {"contains": {"const": "human_transfer"}}
+        ]
+      },
+      "summary": {
+        "type": "object",
+        "properties": {"transfer_reason": {"const": "faq_not_found"}},
+        "required": ["transfer_reason"]
+      }
+    },
+    "required": ["scenario_id", "outcome", "event_kinds", "summary"]
+  }
+}

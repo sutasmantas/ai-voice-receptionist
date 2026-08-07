@@ -1,0 +1,1261 @@
+{
+  "version": 2,
+  "status": "success",
+  "eval": {
+    "eval_id": "3EzG8nBpigdwNovXNn3YBZ",
+    "run_id": "UwEiMyAQyKtadoEYHjUi9d",
+    "created": "2026-08-06T19:16:18+00:00",
+    "task": "firstring_contracts",
+    "task_id": "DjzCCorrbbeM4qXphdYNLJ",
+    "task_version": "1",
+    "task_file": "src/firstring/inspect_eval.py",
+    "task_display_name": "firstring_contracts",
+    "task_registry_name": "firstring_contracts",
+    "task_attribs": {},
+    "task_args": {
+      "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+      "fail_open_mutant": true
+    },
+    "task_args_passed": {
+      "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+      "fail_open_mutant": true
+    },
+    "dataset": {
+      "samples": 4,
+      "sample_ids": [
+        "successful-booking",
+        "unknown-faq",
+        "recovery-dead-letter",
+        "caller-interruption"
+      ],
+      "shuffled": false
+    },
+    "model": "mockllm/model",
+    "model_generate_config": {},
+    "model_args": {},
+    "config": {
+      "epochs": 1,
+      "fail_on_error": true,
+      "continue_on_fail": false,
+      "score_on_error": false,
+      "sandbox_cleanup": true,
+      "log_samples": true,
+      "log_realtime": true,
+      "log_images": true,
+      "log_shared": 0,
+      "score_display": true
+    },
+    "revision": {
+      "type": "git",
+      "origin": "https://github.com/sutasmantas/ai-voice-receptionist.git",
+      "commit": "79a92a4",
+      "dirty": true
+    },
+    "packages": {
+      "inspect_ai": "0.3.253.dev7+gcb00efcd1"
+    },
+    "metadata": {
+      "proofgrid_contract": "proofgrid.inspect-json-schema.v1",
+      "inspect_revision": "cb00efcd12dfbf3e44f486648e05e54f1337fe9a",
+      "mutation": "fail-open-unknown-faq"
+    },
+    "scorers": [
+      {
+        "name": "json_schema_contract",
+        "options": {},
+        "metrics": [
+          {
+            "name": "inspect_ai/mean",
+            "options": {}
+          },
+          {
+            "name": "inspect_ai/stderr",
+            "options": {}
+          }
+        ],
+        "metadata": {}
+      }
+    ]
+  },
+  "plan": {
+    "name": "plan",
+    "steps": [
+      {
+        "solver": "execute_firstring",
+        "params": {
+          "fail_open_mutant": true
+        },
+        "params_passed": {
+          "fail_open_mutant": true
+        }
+      }
+    ],
+    "config": {}
+  },
+  "results": {
+    "total_samples": 4,
+    "completed_samples": 4,
+    "scores": [
+      {
+        "name": "json_schema_contract",
+        "scorer": "json_schema_contract",
+        "scored_samples": 4,
+        "unscored_samples": 0,
+        "params": {},
+        "metrics": {
+          "mean": {
+            "name": "mean",
+            "value": 0.75,
+            "params": {}
+          },
+          "stderr": {
+            "name": "stderr",
+            "value": 0.25,
+            "params": {}
+          }
+        }
+      }
+    ]
+  },
+  "stats": {
+    "started_at": "2026-08-06T19:16:18+00:00",
+    "completed_at": "2026-08-06T19:16:21+00:00",
+    "model_usage": {},
+    "role_usage": {},
+    "connection_limit_history": []
+  },
+  "invalidated": false,
+  "tags": [],
+  "metadata": {
+    "proofgrid_contract": "proofgrid.inspect-json-schema.v1",
+    "inspect_revision": "cb00efcd12dfbf3e44f486648e05e54f1337fe9a",
+    "mutation": "fail-open-unknown-faq"
+  },
+  "samples": [
+    {
+      "id": "caller-interruption",
+      "epoch": 1,
+      "input": "Execute FirstRing scenario caller-interruption",
+      "target": "{\"properties\": {\"event_kinds\": {\"contains\": {\"const\": \"assistant_interrupted\"}, \"type\": \"array\"}, \"metrics\": {\"properties\": {\"interruption_count\": {\"minimum\": 1}}, \"required\": [\"interruption_count\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"caller-interruption\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+      "messages": [
+        {
+          "id": "Jq5opNny3JM6kAapWvZART",
+          "content": "Execute FirstRing scenario caller-interruption",
+          "source": "input",
+          "role": "user"
+        }
+      ],
+      "output": {
+        "model": "firstring/deterministic-engine",
+        "choices": [
+          {
+            "message": {
+              "id": "3mrpnSwTNDuBSgA5NDUDJa",
+              "content": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"assistant_interrupted\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 2, \"interruption_count\": 1, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"caller-interruption\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}",
+              "source": "generate",
+              "role": "assistant",
+              "model": "firstring/deterministic-engine"
+            },
+            "stop_reason": "stop"
+          }
+        ],
+        "completion": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"assistant_interrupted\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 2, \"interruption_count\": 1, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"caller-interruption\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "scores": {
+        "json_schema_contract": {
+          "value": 1,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": []
+        }
+      },
+      "metadata": {
+        "fixture": "interruption.json",
+        "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+        "split": "heldout",
+        "category": "turn-taking"
+      },
+      "store": {},
+      "events": [
+        {
+          "uuid": "mEaD4AL4SaKpHJreQ64S4c",
+          "span_id": "XJ6qQH53wLVUU7gMdo43BB",
+          "timestamp": "2026-08-06T19:16:21.120529+00:00",
+          "working_start": 392785.5672327,
+          "event": "span_begin",
+          "id": "XJ6qQH53wLVUU7gMdo43BB",
+          "type": "init",
+          "name": "init"
+        },
+        {
+          "uuid": "XsHbAPrrhg2uWB9pdAzTrS",
+          "span_id": "XJ6qQH53wLVUU7gMdo43BB",
+          "timestamp": "2026-08-06T19:16:21.120723+00:00",
+          "working_start": 392785.567427,
+          "event": "sample_init",
+          "sample": {
+            "input": "Execute FirstRing scenario caller-interruption",
+            "target": "{\"properties\": {\"event_kinds\": {\"contains\": {\"const\": \"assistant_interrupted\"}, \"type\": \"array\"}, \"metrics\": {\"properties\": {\"interruption_count\": {\"minimum\": 1}}, \"required\": [\"interruption_count\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"caller-interruption\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+            "id": "caller-interruption",
+            "metadata": {
+              "fixture": "interruption.json",
+              "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+              "split": "heldout",
+              "category": "turn-taking"
+            }
+          },
+          "state": {
+            "messages": [
+              {
+                "id": "Jq5opNny3JM6kAapWvZART",
+                "content": "Execute FirstRing scenario caller-interruption",
+                "source": "input",
+                "role": "user"
+              }
+            ],
+            "tools": [],
+            "tool_choice": null,
+            "store": {},
+            "output": {
+              "model": "mockllm/model",
+              "choices": [],
+              "completion": ""
+            },
+            "completed": false,
+            "metadata": {
+              "fixture": "interruption.json",
+              "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+              "split": "heldout",
+              "category": "turn-taking"
+            }
+          }
+        },
+        {
+          "uuid": "GaoLoLh4c3vC8TgWfdh9fx",
+          "span_id": "XJ6qQH53wLVUU7gMdo43BB",
+          "timestamp": "2026-08-06T19:16:21.121060+00:00",
+          "working_start": 392785.5677639,
+          "event": "span_end",
+          "id": "XJ6qQH53wLVUU7gMdo43BB"
+        },
+        {
+          "uuid": "3kf8hujbkDG6iBKWoTAR4d",
+          "span_id": "NPuiw4S2u6fuVTQMofnKxy",
+          "timestamp": "2026-08-06T19:16:21.284241+00:00",
+          "working_start": 0.16297850001137704,
+          "event": "span_begin",
+          "id": "NPuiw4S2u6fuVTQMofnKxy",
+          "type": "solvers",
+          "name": "solvers"
+        },
+        {
+          "uuid": "6q2vAwYbY3qTN8NAsCk2vC",
+          "span_id": "cNTa5SpDGdqLLDBSjHpoys",
+          "timestamp": "2026-08-06T19:16:21.284572+00:00",
+          "working_start": 0.16330989997368306,
+          "event": "span_begin",
+          "id": "cNTa5SpDGdqLLDBSjHpoys",
+          "parent_id": "NPuiw4S2u6fuVTQMofnKxy",
+          "type": "solver",
+          "name": "execute_firstring"
+        },
+        {
+          "uuid": "CmjUdvKQZJQ9D2DXYwwU6t",
+          "span_id": "cNTa5SpDGdqLLDBSjHpoys",
+          "timestamp": "2026-08-06T19:16:21.324676+00:00",
+          "working_start": 0.20341959997313097,
+          "event": "state",
+          "changes": [
+            {
+              "op": "replace",
+              "path": "/output/model",
+              "value": "firstring/deterministic-engine",
+              "replaced": "mockllm/model"
+            },
+            {
+              "op": "replace",
+              "path": "/output/completion",
+              "value": "attachment://02fd73c0d38d90824349a3a3bb152663",
+              "replaced": ""
+            },
+            {
+              "op": "add",
+              "path": "/output/choices/0",
+              "value": {
+                "message": {
+                  "id": "3mrpnSwTNDuBSgA5NDUDJa",
+                  "content": "attachment://02fd73c0d38d90824349a3a3bb152663",
+                  "source": "generate",
+                  "role": "assistant",
+                  "model": "firstring/deterministic-engine"
+                },
+                "stop_reason": "stop"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "Q8GjTuab3KaUgeP8vMwVKm",
+          "span_id": "cNTa5SpDGdqLLDBSjHpoys",
+          "timestamp": "2026-08-06T19:16:21.325431+00:00",
+          "working_start": 0.20417149999411777,
+          "event": "span_end",
+          "id": "cNTa5SpDGdqLLDBSjHpoys"
+        },
+        {
+          "uuid": "bjLZzo27bRjyt7D3L3QJL3",
+          "span_id": "NPuiw4S2u6fuVTQMofnKxy",
+          "timestamp": "2026-08-06T19:16:21.325728+00:00",
+          "working_start": 0.2044661000254564,
+          "event": "span_end",
+          "id": "NPuiw4S2u6fuVTQMofnKxy"
+        },
+        {
+          "uuid": "2xme2Ff79Q3vBgPHmLTbAX",
+          "span_id": "dRGqaKbPhX69fSQTfKRkGa",
+          "timestamp": "2026-08-06T19:16:21.338654+00:00",
+          "working_start": 0.21739180001895875,
+          "event": "span_begin",
+          "id": "dRGqaKbPhX69fSQTfKRkGa",
+          "type": "scorers",
+          "name": "scorers"
+        },
+        {
+          "uuid": "UAwX22K4ZLuLwwZrWXaPid",
+          "span_id": "mpGqG33tjS5d7HDUEhy5Zb",
+          "timestamp": "2026-08-06T19:16:21.338884+00:00",
+          "working_start": 0.2176220000255853,
+          "event": "span_begin",
+          "id": "mpGqG33tjS5d7HDUEhy5Zb",
+          "parent_id": "dRGqaKbPhX69fSQTfKRkGa",
+          "type": "scorer",
+          "name": "json_schema_contract"
+        },
+        {
+          "uuid": "PvjpZv6EyNtLMqtgtNqN8P",
+          "span_id": "mpGqG33tjS5d7HDUEhy5Zb",
+          "timestamp": "2026-08-06T19:16:21.340373+00:00",
+          "working_start": 0.2191107000107877,
+          "event": "score",
+          "score": {
+            "value": 1,
+            "explanation": "output satisfies the frozen JSON Schema oracle",
+            "metadata": {
+              "failure_class": null,
+              "error_count": 0
+            },
+            "history": []
+          },
+          "target": "{\"properties\": {\"event_kinds\": {\"contains\": {\"const\": \"assistant_interrupted\"}, \"type\": \"array\"}, \"metrics\": {\"properties\": {\"interruption_count\": {\"minimum\": 1}}, \"required\": [\"interruption_count\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"caller-interruption\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+          "intermediate": false,
+          "scorer": "json_schema_contract",
+          "scorer_args": {}
+        },
+        {
+          "uuid": "Zy2qZLYtnQDtfZy8GuBdhk",
+          "span_id": "mpGqG33tjS5d7HDUEhy5Zb",
+          "timestamp": "2026-08-06T19:16:21.340591+00:00",
+          "working_start": 0.21932859998196363,
+          "event": "span_end",
+          "id": "mpGqG33tjS5d7HDUEhy5Zb"
+        },
+        {
+          "uuid": "Ci6Na3cFJMt8hoV5tJoYny",
+          "span_id": "dRGqaKbPhX69fSQTfKRkGa",
+          "timestamp": "2026-08-06T19:16:21.341144+00:00",
+          "working_start": 0.21988260000944138,
+          "event": "span_end",
+          "id": "dRGqaKbPhX69fSQTfKRkGa"
+        }
+      ],
+      "model_usage": {},
+      "role_usage": {},
+      "started_at": "2026-08-06T19:16:21.121264+00:00",
+      "completed_at": "2026-08-06T19:16:21.345817+00:00",
+      "total_time": 0.225,
+      "working_time": 0.225,
+      "uuid": "TXCzgqgwuhhpcs7pgUiw7X",
+      "error_retries": [],
+      "attachments": {
+        "02fd73c0d38d90824349a3a3bb152663": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"assistant_interrupted\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 2, \"interruption_count\": 1, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"caller-interruption\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "events_data": {
+        "messages": [],
+        "calls": []
+      },
+      "turn_count": 0
+    },
+    {
+      "id": "recovery-dead-letter",
+      "epoch": 1,
+      "input": "Execute FirstRing scenario recovery-dead-letter",
+      "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"provider_failure\"}}, {\"contains\": {\"const\": \"provider_recovered\"}}, {\"contains\": {\"const\": \"handoff_dead_letter\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"dead_letter\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"recovery-dead-letter\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\"], \"type\": \"object\"}",
+      "messages": [
+        {
+          "id": "Fcoh453sXudMmCzoygv9Kg",
+          "content": "Execute FirstRing scenario recovery-dead-letter",
+          "source": "input",
+          "role": "user"
+        }
+      ],
+      "output": {
+        "model": "firstring/deterministic-engine",
+        "choices": [
+          {
+            "message": {
+              "id": "DbRDuFbjpo5cdGHnv7N5Jg",
+              "content": "{\"event_kinds\": [\"call_started\", \"provider_failure\", \"provider_recovered\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_dead_letter\"], \"handoff_state\": \"dead_letter\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"recovery-dead-letter\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}",
+              "source": "generate",
+              "role": "assistant",
+              "model": "firstring/deterministic-engine"
+            },
+            "stop_reason": "stop"
+          }
+        ],
+        "completion": "{\"event_kinds\": [\"call_started\", \"provider_failure\", \"provider_recovered\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_dead_letter\"], \"handoff_state\": \"dead_letter\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"recovery-dead-letter\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "scores": {
+        "json_schema_contract": {
+          "value": 1,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": []
+        }
+      },
+      "metadata": {
+        "fixture": "recovery_and_dead_letter.json",
+        "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+        "split": "heldout",
+        "category": "provider-failure"
+      },
+      "store": {},
+      "events": [
+        {
+          "uuid": "jr3QGgSjUeBBW6hn8Rq3Wr",
+          "span_id": "BXohWUv5BiDpFQFREbLBQF",
+          "timestamp": "2026-08-06T19:16:21.119328+00:00",
+          "working_start": 392785.5660326,
+          "event": "span_begin",
+          "id": "BXohWUv5BiDpFQFREbLBQF",
+          "type": "init",
+          "name": "init"
+        },
+        {
+          "uuid": "j9SgKL4Sf44phxT7Jf5w6x",
+          "span_id": "BXohWUv5BiDpFQFREbLBQF",
+          "timestamp": "2026-08-06T19:16:21.119586+00:00",
+          "working_start": 392785.5662898,
+          "event": "sample_init",
+          "sample": {
+            "input": "Execute FirstRing scenario recovery-dead-letter",
+            "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"provider_failure\"}}, {\"contains\": {\"const\": \"provider_recovered\"}}, {\"contains\": {\"const\": \"handoff_dead_letter\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"dead_letter\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"recovery-dead-letter\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\"], \"type\": \"object\"}",
+            "id": "recovery-dead-letter",
+            "metadata": {
+              "fixture": "recovery_and_dead_letter.json",
+              "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+              "split": "heldout",
+              "category": "provider-failure"
+            }
+          },
+          "state": {
+            "messages": [
+              {
+                "id": "Fcoh453sXudMmCzoygv9Kg",
+                "content": "Execute FirstRing scenario recovery-dead-letter",
+                "source": "input",
+                "role": "user"
+              }
+            ],
+            "tools": [],
+            "tool_choice": null,
+            "store": {},
+            "output": {
+              "model": "mockllm/model",
+              "choices": [],
+              "completion": ""
+            },
+            "completed": false,
+            "metadata": {
+              "fixture": "recovery_and_dead_letter.json",
+              "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+              "split": "heldout",
+              "category": "provider-failure"
+            }
+          }
+        },
+        {
+          "uuid": "i7oFkgYF8DeX3CNSQQ6QeS",
+          "span_id": "BXohWUv5BiDpFQFREbLBQF",
+          "timestamp": "2026-08-06T19:16:21.119883+00:00",
+          "working_start": 392785.5665874,
+          "event": "span_end",
+          "id": "BXohWUv5BiDpFQFREbLBQF"
+        },
+        {
+          "uuid": "FBVKYnKYSdfkwNZAPvWaPm",
+          "span_id": "ei9WygEtQoaRqXDKJQBz6s",
+          "timestamp": "2026-08-06T19:16:21.212793+00:00",
+          "working_start": 0.09274499997263774,
+          "event": "span_begin",
+          "id": "ei9WygEtQoaRqXDKJQBz6s",
+          "type": "solvers",
+          "name": "solvers"
+        },
+        {
+          "uuid": "G59S9MBGDV8W6KPjKtuymy",
+          "span_id": "UU2vtY9ErpzMyuJdyugHAN",
+          "timestamp": "2026-08-06T19:16:21.213050+00:00",
+          "working_start": 0.09300200000870973,
+          "event": "span_begin",
+          "id": "UU2vtY9ErpzMyuJdyugHAN",
+          "parent_id": "ei9WygEtQoaRqXDKJQBz6s",
+          "type": "solver",
+          "name": "execute_firstring"
+        },
+        {
+          "uuid": "drU85HVicXAzqiCqr5ZkFn",
+          "span_id": "UU2vtY9ErpzMyuJdyugHAN",
+          "timestamp": "2026-08-06T19:16:21.283181+00:00",
+          "working_start": 0.16313739999895915,
+          "event": "state",
+          "changes": [
+            {
+              "op": "replace",
+              "path": "/output/model",
+              "value": "firstring/deterministic-engine",
+              "replaced": "mockllm/model"
+            },
+            {
+              "op": "replace",
+              "path": "/output/completion",
+              "value": "attachment://c28f04cf700164b8a3a2059241998536",
+              "replaced": ""
+            },
+            {
+              "op": "add",
+              "path": "/output/choices/0",
+              "value": {
+                "message": {
+                  "id": "DbRDuFbjpo5cdGHnv7N5Jg",
+                  "content": "attachment://c28f04cf700164b8a3a2059241998536",
+                  "source": "generate",
+                  "role": "assistant",
+                  "model": "firstring/deterministic-engine"
+                },
+                "stop_reason": "stop"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "GUdeZ4g99ZM7r2WRriktqt",
+          "span_id": "UU2vtY9ErpzMyuJdyugHAN",
+          "timestamp": "2026-08-06T19:16:21.283650+00:00",
+          "working_start": 0.1636028999928385,
+          "event": "span_end",
+          "id": "UU2vtY9ErpzMyuJdyugHAN"
+        },
+        {
+          "uuid": "B3dz5BzoEHTf9uM2Nx3TbB",
+          "span_id": "ei9WygEtQoaRqXDKJQBz6s",
+          "timestamp": "2026-08-06T19:16:21.283881+00:00",
+          "working_start": 0.1638329999987036,
+          "event": "span_end",
+          "id": "ei9WygEtQoaRqXDKJQBz6s"
+        },
+        {
+          "uuid": "dypQdAGs7EUWgSLQuKmVQp",
+          "span_id": "gt2pgvGDUCFaGgLj7rPFR6",
+          "timestamp": "2026-08-06T19:16:21.334789+00:00",
+          "working_start": 0.2147411999758333,
+          "event": "span_begin",
+          "id": "gt2pgvGDUCFaGgLj7rPFR6",
+          "type": "scorers",
+          "name": "scorers"
+        },
+        {
+          "uuid": "cvQQYtUDZ5msR3Lp3xZoHo",
+          "span_id": "g8Yvqkskto4U2gQXaYsSEW",
+          "timestamp": "2026-08-06T19:16:21.334981+00:00",
+          "working_start": 0.21493209997424856,
+          "event": "span_begin",
+          "id": "g8Yvqkskto4U2gQXaYsSEW",
+          "parent_id": "gt2pgvGDUCFaGgLj7rPFR6",
+          "type": "scorer",
+          "name": "json_schema_contract"
+        },
+        {
+          "uuid": "JFbPGkH4ERGqZuh4dHzo7G",
+          "span_id": "g8Yvqkskto4U2gQXaYsSEW",
+          "timestamp": "2026-08-06T19:16:21.337906+00:00",
+          "working_start": 0.21785859996452928,
+          "event": "score",
+          "score": {
+            "value": 1,
+            "explanation": "output satisfies the frozen JSON Schema oracle",
+            "metadata": {
+              "failure_class": null,
+              "error_count": 0
+            },
+            "history": []
+          },
+          "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"provider_failure\"}}, {\"contains\": {\"const\": \"provider_recovered\"}}, {\"contains\": {\"const\": \"handoff_dead_letter\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"dead_letter\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"recovery-dead-letter\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\"], \"type\": \"object\"}",
+          "intermediate": false,
+          "scorer": "json_schema_contract",
+          "scorer_args": {}
+        },
+        {
+          "uuid": "9Np545uvJzyJbrLqhT5AmX",
+          "span_id": "g8Yvqkskto4U2gQXaYsSEW",
+          "timestamp": "2026-08-06T19:16:21.338211+00:00",
+          "working_start": 0.21816280001075938,
+          "event": "span_end",
+          "id": "g8Yvqkskto4U2gQXaYsSEW"
+        },
+        {
+          "uuid": "bjm3sL5UVc3ceLeXUcDEGe",
+          "span_id": "gt2pgvGDUCFaGgLj7rPFR6",
+          "timestamp": "2026-08-06T19:16:21.338392+00:00",
+          "working_start": 0.21834369999123737,
+          "event": "span_end",
+          "id": "gt2pgvGDUCFaGgLj7rPFR6"
+        }
+      ],
+      "model_usage": {},
+      "role_usage": {},
+      "started_at": "2026-08-06T19:16:21.120050+00:00",
+      "completed_at": "2026-08-06T19:16:21.345132+00:00",
+      "total_time": 0.225,
+      "working_time": 0.225,
+      "uuid": "5STePAdZjZKqx4SwYKRupq",
+      "error_retries": [],
+      "attachments": {
+        "c28f04cf700164b8a3a2059241998536": "{\"event_kinds\": [\"call_started\", \"provider_failure\", \"provider_recovered\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_dead_letter\"], \"handoff_state\": \"dead_letter\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"recovery-dead-letter\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "events_data": {
+        "messages": [],
+        "calls": []
+      },
+      "turn_count": 0
+    },
+    {
+      "id": "successful-booking",
+      "epoch": 1,
+      "input": "Execute FirstRing scenario successful-booking",
+      "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_answered\"}}, {\"contains\": {\"const\": \"booking_created\"}}, {\"contains\": {\"const\": \"booking_replayed\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"delivered\"}, \"metrics\": {\"properties\": {\"entity_accuracy\": {\"const\": 1.0}, \"max_response_latency_ms\": {\"maximum\": 250}}, \"required\": [\"entity_accuracy\", \"max_response_latency_ms\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"booked\"}, \"scenario_id\": {\"const\": \"successful-booking\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+      "messages": [
+        {
+          "id": "GgQTLgw9YXFXvwn7yLqujp",
+          "content": "Execute FirstRing scenario successful-booking",
+          "source": "input",
+          "role": "user"
+        }
+      ],
+      "output": {
+        "model": "firstring/deterministic-engine",
+        "choices": [
+          {
+            "message": {
+              "id": "Z5WE5jSSM8S7Pewdao4pb6",
+              "content": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_created\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_replayed\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 3, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"booked\", \"scenario_id\": \"successful-booking\", \"summary\": {\"booking\": {\"end_utc\": \"2026-08-03T06:30:00+00:00\", \"id\": \"book_31212940e5\", \"idempotency_key\": \"lead_505e3c6c8b:2026-08-03T06:00:00+00:00\", \"lead_id\": \"lead_505e3c6c8b\", \"start_utc\": \"2026-08-03T06:00:00+00:00\", \"timezone\": \"Europe/Vilnius\"}, \"caller\": {\"email\": \"mira@northstar.example\", \"name\": \"Mira Chen\", \"phone\": \"+37060010001\"}, \"outcome\": \"booked\", \"topics\": [\"faq\", \"booking\"], \"transfer_reason\": null}}",
+              "source": "generate",
+              "role": "assistant",
+              "model": "firstring/deterministic-engine"
+            },
+            "stop_reason": "stop"
+          }
+        ],
+        "completion": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_created\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_replayed\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 3, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"booked\", \"scenario_id\": \"successful-booking\", \"summary\": {\"booking\": {\"end_utc\": \"2026-08-03T06:30:00+00:00\", \"id\": \"book_31212940e5\", \"idempotency_key\": \"lead_505e3c6c8b:2026-08-03T06:00:00+00:00\", \"lead_id\": \"lead_505e3c6c8b\", \"start_utc\": \"2026-08-03T06:00:00+00:00\", \"timezone\": \"Europe/Vilnius\"}, \"caller\": {\"email\": \"mira@northstar.example\", \"name\": \"Mira Chen\", \"phone\": \"+37060010001\"}, \"outcome\": \"booked\", \"topics\": [\"faq\", \"booking\"], \"transfer_reason\": null}}"
+      },
+      "scores": {
+        "json_schema_contract": {
+          "value": 1,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": []
+        }
+      },
+      "metadata": {
+        "fixture": "successful_booking.json",
+        "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+        "split": "heldout",
+        "category": "booking"
+      },
+      "store": {},
+      "events": [
+        {
+          "uuid": "2FubfMCFDTHadVJxhQkRLB",
+          "span_id": "ZGrHkpoK2RpgmbQmomf7yb",
+          "timestamp": "2026-08-06T19:16:21.115807+00:00",
+          "working_start": 392785.5625154,
+          "event": "span_begin",
+          "id": "ZGrHkpoK2RpgmbQmomf7yb",
+          "type": "init",
+          "name": "init"
+        },
+        {
+          "uuid": "RcBvdBxZn4fara6Gr8sDf4",
+          "span_id": "ZGrHkpoK2RpgmbQmomf7yb",
+          "timestamp": "2026-08-06T19:16:21.116367+00:00",
+          "working_start": 392785.5630723,
+          "event": "sample_init",
+          "sample": {
+            "input": "Execute FirstRing scenario successful-booking",
+            "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_answered\"}}, {\"contains\": {\"const\": \"booking_created\"}}, {\"contains\": {\"const\": \"booking_replayed\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"delivered\"}, \"metrics\": {\"properties\": {\"entity_accuracy\": {\"const\": 1.0}, \"max_response_latency_ms\": {\"maximum\": 250}}, \"required\": [\"entity_accuracy\", \"max_response_latency_ms\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"booked\"}, \"scenario_id\": {\"const\": \"successful-booking\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+            "id": "successful-booking",
+            "metadata": {
+              "fixture": "successful_booking.json",
+              "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+              "split": "heldout",
+              "category": "booking"
+            }
+          },
+          "state": {
+            "messages": [
+              {
+                "id": "GgQTLgw9YXFXvwn7yLqujp",
+                "content": "Execute FirstRing scenario successful-booking",
+                "source": "input",
+                "role": "user"
+              }
+            ],
+            "tools": [],
+            "tool_choice": null,
+            "store": {},
+            "output": {
+              "model": "mockllm/model",
+              "choices": [],
+              "completion": ""
+            },
+            "completed": false,
+            "metadata": {
+              "fixture": "successful_booking.json",
+              "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+              "split": "heldout",
+              "category": "booking"
+            }
+          }
+        },
+        {
+          "uuid": "VvZSnTbkwzgDnYQT9K4GpS",
+          "span_id": "ZGrHkpoK2RpgmbQmomf7yb",
+          "timestamp": "2026-08-06T19:16:21.116903+00:00",
+          "working_start": 392785.5636078,
+          "event": "span_end",
+          "id": "ZGrHkpoK2RpgmbQmomf7yb"
+        },
+        {
+          "uuid": "LDftXDwYWfq3JfQ3bTFvit",
+          "span_id": "dF9iEyMoVuPY7VZSKoyr8n",
+          "timestamp": "2026-08-06T19:16:21.124411+00:00",
+          "working_start": 0.007186400005593896,
+          "event": "span_begin",
+          "id": "dF9iEyMoVuPY7VZSKoyr8n",
+          "type": "solvers",
+          "name": "solvers"
+        },
+        {
+          "uuid": "dADmVx3f8upoe9aKq6HUTX",
+          "span_id": "fzsZ3wMaSQb4H6AWtwNHp8",
+          "timestamp": "2026-08-06T19:16:21.125661+00:00",
+          "working_start": 0.008437899989075959,
+          "event": "span_begin",
+          "id": "fzsZ3wMaSQb4H6AWtwNHp8",
+          "parent_id": "dF9iEyMoVuPY7VZSKoyr8n",
+          "type": "solver",
+          "name": "execute_firstring"
+        },
+        {
+          "uuid": "AJBD9vACEmafYFKDCnwxQ3",
+          "span_id": "fzsZ3wMaSQb4H6AWtwNHp8",
+          "timestamp": "2026-08-06T19:16:21.170178+00:00",
+          "working_start": 0.05295510002179071,
+          "event": "state",
+          "changes": [
+            {
+              "op": "replace",
+              "path": "/output/model",
+              "value": "firstring/deterministic-engine",
+              "replaced": "mockllm/model"
+            },
+            {
+              "op": "replace",
+              "path": "/output/completion",
+              "value": "attachment://201195ed8514eb52c70e15a5a3592a56",
+              "replaced": ""
+            },
+            {
+              "op": "add",
+              "path": "/output/choices/0",
+              "value": {
+                "message": {
+                  "id": "Z5WE5jSSM8S7Pewdao4pb6",
+                  "content": "attachment://201195ed8514eb52c70e15a5a3592a56",
+                  "source": "generate",
+                  "role": "assistant",
+                  "model": "firstring/deterministic-engine"
+                },
+                "stop_reason": "stop"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "6F5kKTJHiKcisxGVWeWwGT",
+          "span_id": "fzsZ3wMaSQb4H6AWtwNHp8",
+          "timestamp": "2026-08-06T19:16:21.170660+00:00",
+          "working_start": 0.053434800007380545,
+          "event": "span_end",
+          "id": "fzsZ3wMaSQb4H6AWtwNHp8"
+        },
+        {
+          "uuid": "KLVaKRXPRVBA4gsJgt88D7",
+          "span_id": "dF9iEyMoVuPY7VZSKoyr8n",
+          "timestamp": "2026-08-06T19:16:21.170897+00:00",
+          "working_start": 0.05367090000072494,
+          "event": "span_end",
+          "id": "dF9iEyMoVuPY7VZSKoyr8n"
+        },
+        {
+          "uuid": "cyn73uzXMcSWrFrfgPg7LN",
+          "span_id": "NxVTkr3n9wEZwu8WBMUUKi",
+          "timestamp": "2026-08-06T19:16:21.326710+00:00",
+          "working_start": 0.2094840999925509,
+          "event": "span_begin",
+          "id": "NxVTkr3n9wEZwu8WBMUUKi",
+          "type": "scorers",
+          "name": "scorers"
+        },
+        {
+          "uuid": "nKmHwSQFgNpk2ooJdJ6d47",
+          "span_id": "iXdS5NBoQ7NpmEFrVF33u8",
+          "timestamp": "2026-08-06T19:16:21.327055+00:00",
+          "working_start": 0.20983080001315102,
+          "event": "span_begin",
+          "id": "iXdS5NBoQ7NpmEFrVF33u8",
+          "parent_id": "NxVTkr3n9wEZwu8WBMUUKi",
+          "type": "scorer",
+          "name": "json_schema_contract"
+        },
+        {
+          "uuid": "5JtyXs7taFuj2mAnwrLS7L",
+          "span_id": "iXdS5NBoQ7NpmEFrVF33u8",
+          "timestamp": "2026-08-06T19:16:21.330628+00:00",
+          "working_start": 0.21340299997245893,
+          "event": "score",
+          "score": {
+            "value": 1,
+            "explanation": "output satisfies the frozen JSON Schema oracle",
+            "metadata": {
+              "failure_class": null,
+              "error_count": 0
+            },
+            "history": []
+          },
+          "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_answered\"}}, {\"contains\": {\"const\": \"booking_created\"}}, {\"contains\": {\"const\": \"booking_replayed\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"delivered\"}, \"metrics\": {\"properties\": {\"entity_accuracy\": {\"const\": 1.0}, \"max_response_latency_ms\": {\"maximum\": 250}}, \"required\": [\"entity_accuracy\", \"max_response_latency_ms\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"booked\"}, \"scenario_id\": {\"const\": \"successful-booking\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+          "intermediate": false,
+          "scorer": "json_schema_contract",
+          "scorer_args": {}
+        },
+        {
+          "uuid": "coSnMhm9Xy33iRMiYaLx9X",
+          "span_id": "iXdS5NBoQ7NpmEFrVF33u8",
+          "timestamp": "2026-08-06T19:16:21.331013+00:00",
+          "working_start": 0.2137868999852799,
+          "event": "span_end",
+          "id": "iXdS5NBoQ7NpmEFrVF33u8"
+        },
+        {
+          "uuid": "6k9QTRE9jzLeK6wrwpAHfs",
+          "span_id": "NxVTkr3n9wEZwu8WBMUUKi",
+          "timestamp": "2026-08-06T19:16:21.331260+00:00",
+          "working_start": 0.2140347000095062,
+          "event": "span_end",
+          "id": "NxVTkr3n9wEZwu8WBMUUKi"
+        }
+      ],
+      "model_usage": {},
+      "role_usage": {},
+      "started_at": "2026-08-06T19:16:21.117229+00:00",
+      "completed_at": "2026-08-06T19:16:21.342458+00:00",
+      "total_time": 0.225,
+      "working_time": 0.225,
+      "uuid": "U4ew8QvRMXsW5XnBHoaAzV",
+      "error_retries": [],
+      "attachments": {
+        "201195ed8514eb52c70e15a5a3592a56": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_created\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_replayed\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 3, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"booked\", \"scenario_id\": \"successful-booking\", \"summary\": {\"booking\": {\"end_utc\": \"2026-08-03T06:30:00+00:00\", \"id\": \"book_31212940e5\", \"idempotency_key\": \"lead_505e3c6c8b:2026-08-03T06:00:00+00:00\", \"lead_id\": \"lead_505e3c6c8b\", \"start_utc\": \"2026-08-03T06:00:00+00:00\", \"timezone\": \"Europe/Vilnius\"}, \"caller\": {\"email\": \"mira@northstar.example\", \"name\": \"Mira Chen\", \"phone\": \"+37060010001\"}, \"outcome\": \"booked\", \"topics\": [\"faq\", \"booking\"], \"transfer_reason\": null}}"
+      },
+      "events_data": {
+        "messages": [],
+        "calls": []
+      },
+      "turn_count": 0
+    },
+    {
+      "id": "unknown-faq",
+      "epoch": 1,
+      "input": "Execute FirstRing scenario unknown-faq",
+      "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_not_found\"}}, {\"contains\": {\"const\": \"human_transfer\"}}], \"type\": \"array\"}, \"outcome\": {\"const\": \"transfer\"}, \"scenario_id\": {\"const\": \"unknown-faq\"}, \"summary\": {\"properties\": {\"transfer_reason\": {\"const\": \"faq_not_found\"}}, \"required\": [\"transfer_reason\"], \"type\": \"object\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"summary\"], \"type\": \"object\"}",
+      "messages": [
+        {
+          "id": "YdukyBGCLn8YdsKTTtgFCj",
+          "content": "Execute FirstRing scenario unknown-faq",
+          "source": "input",
+          "role": "user"
+        }
+      ],
+      "output": {
+        "model": "firstring/deterministic-engine",
+        "choices": [
+          {
+            "message": {
+              "id": "aTX9n8VjTTBTMDEU2pkGsh",
+              "content": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"unknown-faq\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"transfer\", \"topics\": [\"faq\"], \"transfer_reason\": null}}",
+              "source": "generate",
+              "role": "assistant",
+              "model": "firstring/deterministic-engine"
+            },
+            "stop_reason": "stop"
+          }
+        ],
+        "completion": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"unknown-faq\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"transfer\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "scores": {
+        "json_schema_contract": {
+          "value": 0,
+          "explanation": "event_kinds: ['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema; event_kinds: ['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema; outcome: 'transfer' was expected; summary/transfer_reason: 'faq_not_found' was expected",
+          "metadata": {
+            "failure_class": "contract_mismatch",
+            "error_count": 4,
+            "errors": [
+              {
+                "path": "event_kinds",
+                "message": "['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema"
+              },
+              {
+                "path": "event_kinds",
+                "message": "['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema"
+              },
+              {
+                "path": "outcome",
+                "message": "'transfer' was expected"
+              },
+              {
+                "path": "summary/transfer_reason",
+                "message": "'faq_not_found' was expected"
+              }
+            ]
+          },
+          "history": []
+        }
+      },
+      "metadata": {
+        "fixture": "unknown_faq.json",
+        "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+        "split": "heldout",
+        "category": "grounding-failure"
+      },
+      "store": {},
+      "events": [
+        {
+          "uuid": "M86j5hkKnuzG3hdRpYsQcZ",
+          "span_id": "dtTUBvK9vXxfQ7FxifV9bM",
+          "timestamp": "2026-08-06T19:16:21.117979+00:00",
+          "working_start": 392785.5646837,
+          "event": "span_begin",
+          "id": "dtTUBvK9vXxfQ7FxifV9bM",
+          "type": "init",
+          "name": "init"
+        },
+        {
+          "uuid": "mz8iojuvqDjY82Z6wNhyeu",
+          "span_id": "dtTUBvK9vXxfQ7FxifV9bM",
+          "timestamp": "2026-08-06T19:16:21.118214+00:00",
+          "working_start": 392785.5649176,
+          "event": "sample_init",
+          "sample": {
+            "input": "Execute FirstRing scenario unknown-faq",
+            "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_not_found\"}}, {\"contains\": {\"const\": \"human_transfer\"}}], \"type\": \"array\"}, \"outcome\": {\"const\": \"transfer\"}, \"scenario_id\": {\"const\": \"unknown-faq\"}, \"summary\": {\"properties\": {\"transfer_reason\": {\"const\": \"faq_not_found\"}}, \"required\": [\"transfer_reason\"], \"type\": \"object\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"summary\"], \"type\": \"object\"}",
+            "id": "unknown-faq",
+            "metadata": {
+              "fixture": "unknown_faq.json",
+              "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+              "split": "heldout",
+              "category": "grounding-failure"
+            }
+          },
+          "state": {
+            "messages": [
+              {
+                "id": "YdukyBGCLn8YdsKTTtgFCj",
+                "content": "Execute FirstRing scenario unknown-faq",
+                "source": "input",
+                "role": "user"
+              }
+            ],
+            "tools": [],
+            "tool_choice": null,
+            "store": {},
+            "output": {
+              "model": "mockllm/model",
+              "choices": [],
+              "completion": ""
+            },
+            "completed": false,
+            "metadata": {
+              "fixture": "unknown_faq.json",
+              "run_dir": "docs/evidence/inspect/fail-open-mutant/state",
+              "split": "heldout",
+              "category": "grounding-failure"
+            }
+          }
+        },
+        {
+          "uuid": "WV8SgXwVorgPxYVAD3RiRw",
+          "span_id": "dtTUBvK9vXxfQ7FxifV9bM",
+          "timestamp": "2026-08-06T19:16:21.118548+00:00",
+          "working_start": 392785.5652521,
+          "event": "span_end",
+          "id": "dtTUBvK9vXxfQ7FxifV9bM"
+        },
+        {
+          "uuid": "EnHZwvemw64UoZVEMiaMeo",
+          "span_id": "n2RRg53rjGiabeWEhFR7x6",
+          "timestamp": "2026-08-06T19:16:21.171373+00:00",
+          "working_start": 0.052664500020910054,
+          "event": "span_begin",
+          "id": "n2RRg53rjGiabeWEhFR7x6",
+          "type": "solvers",
+          "name": "solvers"
+        },
+        {
+          "uuid": "6juMZqbjvVob6RrLz52mHg",
+          "span_id": "SZpBiA9aKTCSR9jEMXxDFV",
+          "timestamp": "2026-08-06T19:16:21.171592+00:00",
+          "working_start": 0.05288329999893904,
+          "event": "span_begin",
+          "id": "SZpBiA9aKTCSR9jEMXxDFV",
+          "parent_id": "n2RRg53rjGiabeWEhFR7x6",
+          "type": "solver",
+          "name": "execute_firstring"
+        },
+        {
+          "uuid": "gtMaCYwrdxAcSEnUuWtWS7",
+          "span_id": "SZpBiA9aKTCSR9jEMXxDFV",
+          "timestamp": "2026-08-06T19:16:21.211159+00:00",
+          "working_start": 0.09245779999764636,
+          "event": "state",
+          "changes": [
+            {
+              "op": "replace",
+              "path": "/output/model",
+              "value": "firstring/deterministic-engine",
+              "replaced": "mockllm/model"
+            },
+            {
+              "op": "replace",
+              "path": "/output/completion",
+              "value": "attachment://d7ae9aa306515127f3283c5a5e0a3aa7",
+              "replaced": ""
+            },
+            {
+              "op": "add",
+              "path": "/output/choices/0",
+              "value": {
+                "message": {
+                  "id": "aTX9n8VjTTBTMDEU2pkGsh",
+                  "content": "attachment://d7ae9aa306515127f3283c5a5e0a3aa7",
+                  "source": "generate",
+                  "role": "assistant",
+                  "model": "firstring/deterministic-engine"
+                },
+                "stop_reason": "stop"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "f8PQFEMbBg9Jw9EM8sYxNP",
+          "span_id": "SZpBiA9aKTCSR9jEMXxDFV",
+          "timestamp": "2026-08-06T19:16:21.211947+00:00",
+          "working_start": 0.09324160002870485,
+          "event": "span_end",
+          "id": "SZpBiA9aKTCSR9jEMXxDFV"
+        },
+        {
+          "uuid": "Cpm2pEN4qHRWqqt3fdrq5Q",
+          "span_id": "n2RRg53rjGiabeWEhFR7x6",
+          "timestamp": "2026-08-06T19:16:21.212280+00:00",
+          "working_start": 0.09357179998187348,
+          "event": "span_end",
+          "id": "n2RRg53rjGiabeWEhFR7x6"
+        },
+        {
+          "uuid": "CreErQcbxF2faBThPhavyg",
+          "span_id": "D3EpGZ8z7ZnfnarMiC3f96",
+          "timestamp": "2026-08-06T19:16:21.331602+00:00",
+          "working_start": 0.21289349999278784,
+          "event": "span_begin",
+          "id": "D3EpGZ8z7ZnfnarMiC3f96",
+          "type": "scorers",
+          "name": "scorers"
+        },
+        {
+          "uuid": "53oVAUfEXwsmW9WhNHxd88",
+          "span_id": "7RXvCb5Z5L3YuGgq33rFmp",
+          "timestamp": "2026-08-06T19:16:21.331807+00:00",
+          "working_start": 0.21309869998367503,
+          "event": "span_begin",
+          "id": "7RXvCb5Z5L3YuGgq33rFmp",
+          "parent_id": "D3EpGZ8z7ZnfnarMiC3f96",
+          "type": "scorer",
+          "name": "json_schema_contract"
+        },
+        {
+          "uuid": "gdCgsbjgAoufsegPGH8Hqn",
+          "span_id": "7RXvCb5Z5L3YuGgq33rFmp",
+          "timestamp": "2026-08-06T19:16:21.334041+00:00",
+          "working_start": 0.21533370000543073,
+          "event": "score",
+          "score": {
+            "value": 0,
+            "explanation": "event_kinds: ['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema; event_kinds: ['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema; outcome: 'transfer' was expected; summary/transfer_reason: 'faq_not_found' was expected",
+            "metadata": {
+              "failure_class": "contract_mismatch",
+              "error_count": 4,
+              "errors": [
+                {
+                  "path": "event_kinds",
+                  "message": "['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema"
+                },
+                {
+                  "path": "event_kinds",
+                  "message": "['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema"
+                },
+                {
+                  "path": "outcome",
+                  "message": "'transfer' was expected"
+                },
+                {
+                  "path": "summary/transfer_reason",
+                  "message": "'faq_not_found' was expected"
+                }
+              ]
+            },
+            "history": []
+          },
+          "target": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_not_found\"}}, {\"contains\": {\"const\": \"human_transfer\"}}], \"type\": \"array\"}, \"outcome\": {\"const\": \"transfer\"}, \"scenario_id\": {\"const\": \"unknown-faq\"}, \"summary\": {\"properties\": {\"transfer_reason\": {\"const\": \"faq_not_found\"}}, \"required\": [\"transfer_reason\"], \"type\": \"object\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"summary\"], \"type\": \"object\"}",
+          "intermediate": false,
+          "scorer": "json_schema_contract",
+          "scorer_args": {}
+        },
+        {
+          "uuid": "bnamr7f22SMiuHjQH9E5qX",
+          "span_id": "7RXvCb5Z5L3YuGgq33rFmp",
+          "timestamp": "2026-08-06T19:16:21.334312+00:00",
+          "working_start": 0.2156041000271216,
+          "event": "span_end",
+          "id": "7RXvCb5Z5L3YuGgq33rFmp"
+        },
+        {
+          "uuid": "Byxn92cuqtHBoYpdoURbwH",
+          "span_id": "D3EpGZ8z7ZnfnarMiC3f96",
+          "timestamp": "2026-08-06T19:16:21.334483+00:00",
+          "working_start": 0.21577419998357072,
+          "event": "span_end",
+          "id": "D3EpGZ8z7ZnfnarMiC3f96"
+        }
+      ],
+      "model_usage": {},
+      "role_usage": {},
+      "started_at": "2026-08-06T19:16:21.118711+00:00",
+      "completed_at": "2026-08-06T19:16:21.344022+00:00",
+      "total_time": 0.225,
+      "working_time": 0.225,
+      "uuid": "DXAf9bvU6cM3H3DQRPzkY3",
+      "error_retries": [],
+      "attachments": {
+        "d7ae9aa306515127f3283c5a5e0a3aa7": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"unknown-faq\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"transfer\", \"topics\": [\"faq\"], \"transfer_reason\": null}}"
+      },
+      "events_data": {
+        "messages": [],
+        "calls": []
+      },
+      "turn_count": 0
+    }
+  ],
+  "reductions": [
+    {
+      "scorer": "json_schema_contract",
+      "samples": [
+        {
+          "value": 1.0,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": [],
+          "sample_id": "successful-booking"
+        },
+        {
+          "value": 0.0,
+          "explanation": "event_kinds: ['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema; event_kinds: ['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema; outcome: 'transfer' was expected; summary/transfer_reason: 'faq_not_found' was expected",
+          "metadata": {
+            "failure_class": "contract_mismatch",
+            "error_count": 4,
+            "errors": [
+              {
+                "path": "event_kinds",
+                "message": "['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema"
+              },
+              {
+                "path": "event_kinds",
+                "message": "['call_started', 'stt_partial', 'stt_final', 'assistant_response', 'summary_created', 'handoff_delivered'] does not contain items matching the given schema"
+              },
+              {
+                "path": "outcome",
+                "message": "'transfer' was expected"
+              },
+              {
+                "path": "summary/transfer_reason",
+                "message": "'faq_not_found' was expected"
+              }
+            ]
+          },
+          "history": [],
+          "sample_id": "unknown-faq"
+        },
+        {
+          "value": 1.0,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": [],
+          "sample_id": "recovery-dead-letter"
+        },
+        {
+          "value": 1.0,
+          "explanation": "output satisfies the frozen JSON Schema oracle",
+          "metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "history": [],
+          "sample_id": "caller-interruption"
+        }
+      ]
+    }
+  ]
+}

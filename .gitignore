@@ -11,9 +11,12 @@ KMS
 .pytest_cache
 .ruff_cache
 .coverage
+.inspect/
 runtime/
 dist/
 build/
+docs/evidence/inspect/**/runs.sqlite3
+docs/evidence/inspect/**/state/
 
 # Claude Code
 .claude/settings.local.json
@@ -35,3 +38,4 @@ build/
 
 # GitHub CLI
 .github/personal-instructions.md
+.evidence/

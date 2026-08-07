@@ -1,0 +1,193 @@
+{
+  "kind": "inspect_executable_evaluation",
+  "run_id": "inspect_3RTtwHRwDvd5NLC9f2CqPx",
+  "created_at": "2026-08-06T19:15:47+00:00",
+  "suite_hash": "f269e5708478812b96d4f1caceb41937551bbd890dbd46e464f82aa428bf2e1a",
+  "promotion_hash": "2c717e94e0f772a69e73ceeab8eddf57064f27de0a8963ac72189d275c7ec2c2",
+  "promotion_rule": {
+    "scorer": "json_schema_contract",
+    "minimum_score": 1.0
+  },
+  "source": {
+    "framework": "inspect-ai",
+    "framework_version": "0.3.253.dev7+gcb00efcd1",
+    "framework_revision": "cb00efcd12dfbf3e44f486648e05e54f1337fe9a",
+    "log_name": "2026-08-06T19-15-47-00-00_firstring-contracts_BYdi6Hn4K5Szvni4QiCp5L.json",
+    "log_sha256": "34ca6001ad4b3b464308a0bc809d460f9685dcc693851073d414376896012ae9",
+    "eval_id": "3RTtwHRwDvd5NLC9f2CqPx",
+    "task_version": "1"
+  },
+  "cases": [
+    {
+      "case_id": "caller-interruption",
+      "split": "heldout",
+      "category": "turn-taking",
+      "input": "Execute FirstRing scenario caller-interruption",
+      "expected": "{\"properties\": {\"event_kinds\": {\"contains\": {\"const\": \"assistant_interrupted\"}, \"type\": \"array\"}, \"metrics\": {\"properties\": {\"interruption_count\": {\"minimum\": 1}}, \"required\": [\"interruption_count\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"caller-interruption\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}"
+    },
+    {
+      "case_id": "recovery-dead-letter",
+      "split": "heldout",
+      "category": "provider-failure",
+      "input": "Execute FirstRing scenario recovery-dead-letter",
+      "expected": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"provider_failure\"}}, {\"contains\": {\"const\": \"provider_recovered\"}}, {\"contains\": {\"const\": \"handoff_dead_letter\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"dead_letter\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"recovery-dead-letter\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\"], \"type\": \"object\"}"
+    },
+    {
+      "case_id": "successful-booking",
+      "split": "heldout",
+      "category": "booking",
+      "input": "Execute FirstRing scenario successful-booking",
+      "expected": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_answered\"}}, {\"contains\": {\"const\": \"booking_created\"}}, {\"contains\": {\"const\": \"booking_replayed\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"delivered\"}, \"metrics\": {\"properties\": {\"entity_accuracy\": {\"const\": 1.0}, \"max_response_latency_ms\": {\"maximum\": 250}}, \"required\": [\"entity_accuracy\", \"max_response_latency_ms\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"booked\"}, \"scenario_id\": {\"const\": \"successful-booking\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}"
+    },
+    {
+      "case_id": "unknown-faq",
+      "split": "heldout",
+      "category": "grounding-failure",
+      "input": "Execute FirstRing scenario unknown-faq",
+      "expected": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_not_found\"}}, {\"contains\": {\"const\": \"human_transfer\"}}], \"type\": \"array\"}, \"outcome\": {\"const\": \"transfer\"}, \"scenario_id\": {\"const\": \"unknown-faq\"}, \"summary\": {\"properties\": {\"transfer_reason\": {\"const\": \"faq_not_found\"}}, \"required\": [\"transfer_reason\"], \"type\": \"object\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"summary\"], \"type\": \"object\"}"
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "firstring_contracts",
+      "label": "firstring_contracts",
+      "provider": "inspect-ai",
+      "model": "mockllm/model",
+      "response_mode": "executable-agent",
+      "prompt_hash": "e5a98de5770ebe5d91b3fd89bb367c770e9d1bb5b4ea4ccb34713a6df0d7c11e",
+      "config_hash": "59a967709eef7422d5471855ded68f54dfd94d4efb5e8cfe5ff23471b95ceda1",
+      "rows": [
+        {
+          "case_id": "caller-interruption",
+          "split": "heldout",
+          "category": "turn-taking",
+          "output": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"assistant_interrupted\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 2, \"interruption_count\": 1, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"caller-interruption\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}",
+          "expected": "{\"properties\": {\"event_kinds\": {\"contains\": {\"const\": \"assistant_interrupted\"}, \"type\": \"array\"}, \"metrics\": {\"properties\": {\"interruption_count\": {\"minimum\": 1}}, \"required\": [\"interruption_count\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"caller-interruption\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+          "schema_score": 1.0,
+          "task_score": 1.0,
+          "exact_score": null,
+          "latency_ms": 270.0,
+          "prompt_tokens": null,
+          "completion_tokens": null,
+          "total_tokens": null,
+          "cost_usd": null,
+          "retry_count": 0,
+          "rate_limit_count": 0,
+          "failure_class": null,
+          "error": null,
+          "score_explanation": "output satisfies the frozen JSON Schema oracle",
+          "score_metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "needs_review": false,
+          "review_reason": null,
+          "passed": true
+        },
+        {
+          "case_id": "recovery-dead-letter",
+          "split": "heldout",
+          "category": "provider-failure",
+          "output": "{\"event_kinds\": [\"call_started\", \"provider_failure\", \"provider_recovered\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"summary_created\", \"handoff_dead_letter\"], \"handoff_state\": \"dead_letter\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"answered\", \"scenario_id\": \"recovery-dead-letter\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"answered\", \"topics\": [\"faq\"], \"transfer_reason\": null}}",
+          "expected": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"provider_failure\"}}, {\"contains\": {\"const\": \"provider_recovered\"}}, {\"contains\": {\"const\": \"handoff_dead_letter\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"dead_letter\"}, \"outcome\": {\"const\": \"answered\"}, \"scenario_id\": {\"const\": \"recovery-dead-letter\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\"], \"type\": \"object\"}",
+          "schema_score": 1.0,
+          "task_score": 1.0,
+          "exact_score": null,
+          "latency_ms": 272.0,
+          "prompt_tokens": null,
+          "completion_tokens": null,
+          "total_tokens": null,
+          "cost_usd": null,
+          "retry_count": 0,
+          "rate_limit_count": 0,
+          "failure_class": null,
+          "error": null,
+          "score_explanation": "output satisfies the frozen JSON Schema oracle",
+          "score_metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "needs_review": false,
+          "review_reason": null,
+          "passed": true
+        },
+        {
+          "case_id": "successful-booking",
+          "split": "heldout",
+          "category": "booking",
+          "output": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_answered\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_created\", \"assistant_response\", \"stt_partial\", \"stt_final\", \"booking_replayed\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 3, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"booked\", \"scenario_id\": \"successful-booking\", \"summary\": {\"booking\": {\"end_utc\": \"2026-08-03T06:30:00+00:00\", \"id\": \"book_31212940e5\", \"idempotency_key\": \"lead_505e3c6c8b:2026-08-03T06:00:00+00:00\", \"lead_id\": \"lead_505e3c6c8b\", \"start_utc\": \"2026-08-03T06:00:00+00:00\", \"timezone\": \"Europe/Vilnius\"}, \"caller\": {\"email\": \"mira@northstar.example\", \"name\": \"Mira Chen\", \"phone\": \"+37060010001\"}, \"outcome\": \"booked\", \"topics\": [\"faq\", \"booking\"], \"transfer_reason\": null}}",
+          "expected": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_answered\"}}, {\"contains\": {\"const\": \"booking_created\"}}, {\"contains\": {\"const\": \"booking_replayed\"}}], \"type\": \"array\"}, \"handoff_state\": {\"const\": \"delivered\"}, \"metrics\": {\"properties\": {\"entity_accuracy\": {\"const\": 1.0}, \"max_response_latency_ms\": {\"maximum\": 250}}, \"required\": [\"entity_accuracy\", \"max_response_latency_ms\"], \"type\": \"object\"}, \"outcome\": {\"const\": \"booked\"}, \"scenario_id\": {\"const\": \"successful-booking\"}}, \"required\": [\"scenario_id\", \"outcome\", \"handoff_state\", \"event_kinds\", \"metrics\"], \"type\": \"object\"}",
+          "schema_score": 1.0,
+          "task_score": 1.0,
+          "exact_score": null,
+          "latency_ms": 278.0,
+          "prompt_tokens": null,
+          "completion_tokens": null,
+          "total_tokens": null,
+          "cost_usd": null,
+          "retry_count": 0,
+          "rate_limit_count": 0,
+          "failure_class": null,
+          "error": null,
+          "score_explanation": "output satisfies the frozen JSON Schema oracle",
+          "score_metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "needs_review": false,
+          "review_reason": null,
+          "passed": true
+        },
+        {
+          "case_id": "unknown-faq",
+          "split": "heldout",
+          "category": "grounding-failure",
+          "output": "{\"event_kinds\": [\"call_started\", \"stt_partial\", \"stt_final\", \"faq_not_found\", \"human_transfer\", \"assistant_response\", \"summary_created\", \"handoff_delivered\"], \"handoff_state\": \"delivered\", \"metrics\": {\"entity_accuracy\": 1.0, \"final_transcript_count\": 1, \"interruption_count\": 0, \"max_response_latency_ms\": 120}, \"outcome\": \"transfer\", \"scenario_id\": \"unknown-faq\", \"summary\": {\"booking\": null, \"caller\": {}, \"outcome\": \"transfer\", \"topics\": [\"faq\"], \"transfer_reason\": \"faq_not_found\"}}",
+          "expected": "{\"properties\": {\"event_kinds\": {\"allOf\": [{\"contains\": {\"const\": \"faq_not_found\"}}, {\"contains\": {\"const\": \"human_transfer\"}}], \"type\": \"array\"}, \"outcome\": {\"const\": \"transfer\"}, \"scenario_id\": {\"const\": \"unknown-faq\"}, \"summary\": {\"properties\": {\"transfer_reason\": {\"const\": \"faq_not_found\"}}, \"required\": [\"transfer_reason\"], \"type\": \"object\"}}, \"required\": [\"scenario_id\", \"outcome\", \"event_kinds\", \"summary\"], \"type\": \"object\"}",
+          "schema_score": 1.0,
+          "task_score": 1.0,
+          "exact_score": null,
+          "latency_ms": 275.0,
+          "prompt_tokens": null,
+          "completion_tokens": null,
+          "total_tokens": null,
+          "cost_usd": null,
+          "retry_count": 0,
+          "rate_limit_count": 0,
+          "failure_class": null,
+          "error": null,
+          "score_explanation": "output satisfies the frozen JSON Schema oracle",
+          "score_metadata": {
+            "failure_class": null,
+            "error_count": 0
+          },
+          "needs_review": false,
+          "review_reason": null,
+          "passed": true
+        }
+      ],
+      "summary": {
+        "evaluated_cases": 4,
+        "passed_cases": 4,
+        "pass_rate": 1.0,
+        "minimum_score": 1.0,
+        "sample_errors": 0,
+        "gate_checks": {
+          "all_samples_scored": true,
+          "minimum_score": true,
+          "sample_errors": true
+        },
+        "promoted": true
+      }
+    }
+  ],
+  "decision": {
+    "promoted_candidates": [
+      "firstring_contracts"
+    ],
+    "winner": "firstring_contracts",
+    "winner_basis": "all executable samples satisfy the frozen JSON Schema oracle",
+    "provider_superiority_claim_allowed": false,
+    "scope": "pinned executable task and frozen consumer-local schemas only"
+  }
+}

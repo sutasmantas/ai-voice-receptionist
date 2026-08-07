@@ -1,3 +1,9 @@
 * text=auto eol=lf
 *.whl binary
 *.png binary
+# Hash manifests are consumed by `sha256sum -c`, which treats a trailing CR as
+# part of the filename, and are compared against records kept outside this
+# repository. Keep them LF on every platform.
+*.sha256 text eol=lf
+SHA256SUMS text eol=lf
+*.whl binary

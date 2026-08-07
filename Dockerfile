@@ -8,9 +8,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 RUN addgroup --system app && adduser --system --ingroup app --home /app app
 WORKDIR /app
 
-COPY vendor/deliveryguard-0.1.0-py3-none-any.whl /tmp/deliveryguard-0.1.0-py3-none-any.whl
-RUN python -m pip install --no-cache-dir /tmp/deliveryguard-0.1.0-py3-none-any.whl \
-    && rm /tmp/deliveryguard-0.1.0-py3-none-any.whl
+COPY vendor/deliveryguard-0.2.0-py3-none-any.whl /tmp/deliveryguard-0.2.0-py3-none-any.whl
+RUN python -m pip install --no-cache-dir /tmp/deliveryguard-0.2.0-py3-none-any.whl \
+    && rm /tmp/deliveryguard-0.2.0-py3-none-any.whl
 
 COPY pyproject.toml README.md ./
 COPY src ./src

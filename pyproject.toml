@@ -10,12 +10,12 @@ readme = "README.md"
 requires-python = ">=3.10, <3.15"
 
 dependencies = [
-    "deliveryguard==0.1.0",
+    "deliveryguard==0.2.0",
     "fastapi==0.136.3",
     "jinja2==3.1.6",
     "livekit-agents==1.6.7",
     "livekit-plugins-ai-coustics~=0.2",
-    "python-dotenv==1.2.1",
+    "python-dotenv==1.2.2",
     "rapidfuzz==3.14.5",
     "tzdata==2026.3",
     "uvicorn==0.41.0",
@@ -36,11 +36,18 @@ dev = [
     "ruff==0.15.5",
     "twine==6.2.0",
 ]
+eval = [
+    "autoevals[inspect]==0.3.0",
+]
 
 [tool.uv]
 # yarl 1.24.1 was published with only a cp310 wheel and no sdist, so it can't
 # install on Python 3.11+. Remove this once upstream uploads the remaining wheels.
 constraint-dependencies = ["yarl<1.24"]
+
+[tool.uv.sources]
+autoevals = { path = "vendor/autoevals-0.3.0-py3-none-any.whl" }
+deliveryguard = { path = "vendor/deliveryguard-0.2.0-py3-none-any.whl" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -80,5 +87,5 @@ strict = true
 packages = ["firstring"]
 
 [[tool.mypy.overrides]]
-module = ["deliveryguard.*", "rapidfuzz.*"]
+module = ["deliveryguard.*", "inspect_ai.*", "proofgrid.*", "rapidfuzz.*"]
 ignore_missing_imports = true
