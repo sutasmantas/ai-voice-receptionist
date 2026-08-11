@@ -1,4 +1,40 @@
-# FirstRing P5 execution checkpoint
+# FirstRing systematic technique checkpoint
+
+- Date: 2026-08-05
+- Worktree: `portfolio_demos/worktrees/voice_receptionist_technique_dossier`
+- Branch: `agent/voice-receptionist-technique-dossier`
+- Base: `79a92a46971f3ecb8a5ba2e596a2e8b2b92f97a0`
+- Dossier commit: `16445861c3052d0ae02c52ce0117b2fd50e6fc91`
+- Gate: systematic evidence `PASS`; experiment and overall technique ceiling
+  remain `PARTIAL`
+- Artifacts: `TECHNIQUE_TAXONOMY.md`, `EVIDENCE_MATRIX.csv`,
+  `GITHUB_IMPLEMENTATION_AUDIT.md`, `BENCHMARK_DESIGN.md`,
+  `RESEARCH_DECISION.md`, and `docs/EXPERTISE_NOTES.md`
+- GitHub-first decision: reuse maintained ASR, VAD, EOT, TTS and channel
+  components; custom work is limited to adapters, manifests, receipts and
+  task/entity scorers
+- Corrected compatibility boundary: the current generic hosted profile is not
+  bilingual evidence; LiveKit audio EOT and Cartesia omit Lithuanian, while an
+  exact MMS/Piper artifact check also rejected both as LT controls; Supertonic
+  3 is the local LT TTS candidate
+- Baseline verification:
+  - `.venv\\Scripts\\python.exe -m ruff check .` — PASS
+  - `.venv\\Scripts\\python.exe -m ruff format --check .` — PASS (19 files)
+  - `.venv\\Scripts\\python.exe -m mypy` — PASS (14 source files)
+  - `.venv\\Scripts\\python.exe -m pytest --cov=firstring --cov-report=term-missing`
+    — PASS (16 tests, 89.13% coverage)
+  - evidence-matrix CSV parse — PASS (29 rows, 14 columns)
+- Boundaries: no dataset download, audio capture/generation, model inference,
+  provider call, SIP/phone test, dependency/application change, UI/polish,
+  merge, push or publication was performed
+- Remaining limitations: no measured EN/LT ASR, VAD, EOT, interruption, TTS,
+  duplex, telephone, latency, cost, native preference or production result;
+  V0-V5 are frozen designs only
+- Exact next action: update the central expertise index and portfolio restart
+  controls to mark FirstRing systematic research complete and point to
+  Printline; then stop before Printline or any experiment/depth work
+
+## Previous P5 checkpoint
 
 - Date: 2026-08-03
 - Branch: `agent/voice-receptionist-p5`
