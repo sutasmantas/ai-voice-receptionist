@@ -2,7 +2,7 @@
 
 Date: 2026-08-05
 
-Status: component-level, GitHub-first audit. Repository health is a dated implementation signal, not a popularity contest. Licenses were not researched, filtered or ranked because they are irrelevant for this private portfolio use.
+Status: component-level, GitHub-first audit. Repository health is a dated implementation signal, not a popularity contest.
 
 ## Current composition and boundary
 
