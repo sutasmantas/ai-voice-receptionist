@@ -26,9 +26,13 @@ def test_deliveryguard_wheel_matches_pinned_checkpoint() -> None:
 
 
 def test_leaddock_contract_resolves_from_exact_installed_distribution() -> None:
-    wheel = Path(__file__).parents[1] / "vendor" / "leaddock-1.1.0-py3-none-any.whl"
+    repository_root = Path(__file__).parents[1]
+    manifest = repository_root / "vendor" / "leaddock-1.1.0.sha256"
+    expected_hash, relative_wheel_path = manifest.read_text().split()
+    wheel = repository_root / relative_wheel_path
 
-    assert hashlib.sha256(wheel.read_bytes()).hexdigest() == LEADDOCK_WHEEL_SHA256
+    assert expected_hash == LEADDOCK_WHEEL_SHA256
+    assert hashlib.sha256(wheel.read_bytes()).hexdigest() == expected_hash
     assert version("leaddock") == "1.1.0"
     files = {str(path) for path in distribution("leaddock").files or ()}
     assert "leaddock/contracts.py" in files
