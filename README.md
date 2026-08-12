@@ -1,5 +1,7 @@
 # FirstRing
 
+**Verification:** [claim-to-artifact map and rerun commands](https://sutasmantas.github.io/evidence/#firstring) · [machine-readable receipt](https://sutasmantas.github.io/evidence/receipt.json)
+
 FirstRing is a voice-receptionist starter for qualification, FAQ routing,
 booking, transfer, structured call summaries, and reliable downstream
 handoffs. Its prepared call scenarios run without credentials.
