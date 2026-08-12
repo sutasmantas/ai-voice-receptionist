@@ -6,6 +6,12 @@ Date: 2026-08-05
 
 These are research-backed operating rules. Their V-series comparisons have not run.
 
+The deterministic booking/CRM seam now imports `leaddock==1.1.0` from its exact
+vendored wheel instead of maintaining FirstRing's copied implementation. That
+proves provider/consumer maintenance and preserves replay/collision behavior;
+it does not prove a named CRM, calendar SaaS, OAuth, tenancy or durable booking
+store.
+
 ## Measure a voice profile per language and channel
 
 ### Client trigger

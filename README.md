@@ -15,7 +15,7 @@ It demonstrates:
   fixtures;
 - business-hours, opt-out, human-transfer and provider-recovery rules;
 - timezone-aware, collision-safe, idempotent booking and deterministic CRM
-  mapping reused from LeadDock;
+  mapping consumed from the exact `leaddock==1.1.0` wheel;
 - structured call summaries delivered through DeliveryGuard with bounded
   retry, dead-letter state and replay.
 - the same pinned ProofGrid/Inspect executable-evaluation contract used by the
@@ -27,11 +27,13 @@ It demonstrates:
 
 ## Quickstart
 
-Python 3.10–3.14 is supported.
+Python 3.11–3.14 is supported. The lower bound matches the published LeadDock
+contract rather than claiming an untested Python 3.10 composition.
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python -m pip install vendor\deliveryguard-0.2.0-py3-none-any.whl
+.\.venv\Scripts\python -m pip install vendor\leaddock-1.1.0-py3-none-any.whl
 .\.venv\Scripts\python -m pip install -e . pytest pytest-asyncio pytest-cov ruff mypy build twine httpx httpx2
 .\.venv\Scripts\firstring-demo --scenario successful-booking
 .\.venv\Scripts\python -m uvicorn firstring.app:app --port 8000
@@ -39,6 +41,12 @@ python -m venv .venv
 
 Open `http://127.0.0.1:8000`. Select a fixture and run it on the call score.
 The failure fixture exposes a replay control after the webhook dead-letters.
+
+FirstRing no longer carries a copy of LeadDock's calendar algorithm. The
+vendored wheel owns the deterministic local CRM mapping, UTC slot validation,
+booking replay and collision refusal, while FirstRing retains call policy,
+entity capture and handoff behavior. This is not evidence of a named CRM,
+calendar SaaS, OAuth flow or production persistence.
 
 ## Verification
 

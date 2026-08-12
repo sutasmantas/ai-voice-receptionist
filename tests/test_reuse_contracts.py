@@ -1,17 +1,20 @@
 from __future__ import annotations
 
 import hashlib
+from importlib.metadata import distribution, version
 from pathlib import Path
 
 import pytest
-
-from firstring.integrations.leaddock import (
+from leaddock.contracts import (
     LeadDockError,
     LocalCalendarAdapter,
     LocalCrmAdapter,
 )
 
 WHEEL_SHA256 = "3c2e98295a89b5e36c11b2fc423ef6589e1babe3f3433b261889d09ed09993e9"
+LEADDOCK_WHEEL_SHA256 = (
+    "0e5715972675973a039b2489fc86c224b5a656689ec23300f6159dea989e5a16"
+)
 
 
 def test_deliveryguard_wheel_matches_pinned_checkpoint() -> None:
@@ -20,6 +23,16 @@ def test_deliveryguard_wheel_matches_pinned_checkpoint() -> None:
     )
 
     assert hashlib.sha256(wheel.read_bytes()).hexdigest() == WHEEL_SHA256
+
+
+def test_leaddock_contract_resolves_from_exact_installed_distribution() -> None:
+    wheel = Path(__file__).parents[1] / "vendor" / "leaddock-1.1.0-py3-none-any.whl"
+
+    assert hashlib.sha256(wheel.read_bytes()).hexdigest() == LEADDOCK_WHEEL_SHA256
+    assert version("leaddock") == "1.1.0"
+    files = {str(path) for path in distribution("leaddock").files or ()}
+    assert "leaddock/contracts.py" in files
+    assert "leaddock/py.typed" in files
 
 
 def test_leaddock_calendar_preserves_idempotency_and_collision_rules() -> None:

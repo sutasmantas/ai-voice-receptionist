@@ -25,7 +25,9 @@ jobs:
 
     - name: Install dependencies
       run: |
+        sha256sum -c vendor/leaddock-1.1.0.sha256
         python -m pip install vendor/deliveryguard-0.2.0-py3-none-any.whl
+        python -m pip install vendor/leaddock-1.1.0-py3-none-any.whl
         python -m pip install -e . pytest pytest-asyncio pytest-cov ruff mypy build twine httpx httpx2
 
     - name: Static checks

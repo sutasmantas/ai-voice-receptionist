@@ -12,11 +12,11 @@ from deliveryguard import (
     RetryPolicy,
     make_idempotency_key,
 )
+from leaddock.contracts import LocalCalendarAdapter, LocalCrmAdapter
 
 from firstring.contracts import DeterministicStt, DeterministicTts
 from firstring.faq import lookup_faq
 from firstring.integrations.delivery import ClosingDeliveryStore, FixtureWebhookAdapter
-from firstring.integrations.leaddock import LocalCalendarAdapter, LocalCrmAdapter
 from firstring.models import CallEvent, CallRun
 from firstring.store import CallStore
 
