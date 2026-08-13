@@ -4,8 +4,7 @@
 - Worktree: `portfolio_demos/worktrees/firstring_v0_audio`
 - Branch: `agent/firstring-v0-audio-harness`
 - Public base: `17cec5360db720e19da4e4826989950bbcc60aad`
-- Gate: local exit gate `PASS`; hosted checks remain pending, so V0 is not yet
-  closed and V1 remains blocked
+- Gate: V0 exit gate `PASS`; V1 remains blocked
 - Verified implementation commit:
   `ea66eda8d89ede6af3fe6b815e478627a084e1a2`
 - Implemented: committed stereo PCM/WAV fixture and SHA-256 manifest; versioned
@@ -24,15 +23,17 @@
     Twine PASS)
   - public-base rollback — PASS at `17cec5360db720e19da4e4826989950bbcc60aad`
     (V0 absent; 17 passed, 1 skipped, 88.89%; build and Twine PASS)
+  - hosted GitHub `test` job — PASS on branch commit
+    `b69f371640cc842799f94388a6b59e66d701a94a` (run `31670919053`)
 - Evidence boundary: the committed WAV contains deterministic tone lanes and the
   transcript/events are construction-known; this is orchestration evidence, not
   ASR, VAD, EOT, TTS, telephone, latency, model, or production-quality evidence
 - Test-method decision: adopted construction truth, operator/relation checks,
   information asymmetry, a clean control, and mutation kills; rejected model
   judges, voting, generated labels, and probabilistic oracles for V0
-- Exact next action: publish the scoped branch without rewriting `main`, require
-  hosted GitHub checks, then record the exact public head in the central toolbox
-  checkpoint; do not start V1
+- Exact next action: fast-forward this checkpoint commit to public `main` without
+  switching or pushing a local `main`, require the resulting hosted run, then
+  record the exact public head in the central toolbox checkpoint; do not start V1
 
 # Previous FirstRing systematic technique checkpoint
 
