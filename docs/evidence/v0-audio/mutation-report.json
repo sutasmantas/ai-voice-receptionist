@@ -1,0 +1,43 @@
+{
+  "clean_control": "PASS",
+  "mutants_killed": 7,
+  "mutants_total": 7,
+  "results": [
+    {
+      "id": "drop-final-transcript",
+      "killed": true,
+      "reason": "turn-2 must contain one final transcript"
+    },
+    {
+      "id": "final-before-last-partial",
+      "killed": true,
+      "reason": "turn-2 final transcript must follow all partials"
+    },
+    {
+      "id": "erase-critical-entity",
+      "killed": true,
+      "reason": "final transcripts do not match construction truth"
+    },
+    {
+      "id": "clause-pause-becomes-eot",
+      "killed": true,
+      "reason": "turn-2 end_of_turn must follow its final"
+    },
+    {
+      "id": "fail-agent-audio-cancel",
+      "killed": true,
+      "reason": "interruption must cancel agent audio before resume"
+    },
+    {
+      "id": "wrong-booking-crm-result",
+      "killed": true,
+      "reason": "business effect does not match construction truth"
+    },
+    {
+      "id": "duplicate-business-effect",
+      "killed": true,
+      "reason": "timeline must end with exactly one effect_receipt"
+    }
+  ],
+  "schema_version": "firstring.audio-harness-mutation-report/v0"
+}

@@ -1,4 +1,32 @@
-# FirstRing systematic technique checkpoint
+# FirstRing V0 audio harness checkpoint
+
+- Date: 2026-08-13
+- Worktree: `portfolio_demos/worktrees/firstring_v0_audio`
+- Branch: `agent/firstring-v0-audio-harness`
+- Public base: `17cec5360db720e19da4e4826989950bbcc60aad`
+- Gate: `PARTIAL`; implementation and local behavioral tests pass, while build,
+  detached-checkout, rollback, and hosted checks remain pending
+- Implemented: committed stereo PCM/WAV fixture and SHA-256 manifest; versioned
+  JSON Schema; append-only scripted event recorder; immutable raw-script copy;
+  relative-time normalized receipt; exact booking/CRM/handoff comparison; seven
+  frozen mutants plus a clean control
+- Evidence:
+  - focused harness tests — PASS (12 tests)
+  - full test suite with coverage — PASS (31 tests, 87.16% coverage)
+  - replay twice — PASS (byte-identical canonical JSON)
+  - clean control — PASS
+  - frozen mutants — PASS (7/7 killed)
+- Evidence boundary: the committed WAV contains deterministic tone lanes and the
+  transcript/events are construction-known; this is orchestration evidence, not
+  ASR, VAD, EOT, TTS, telephone, latency, model, or production-quality evidence
+- Test-method decision: adopted construction truth, operator/relation checks,
+  information asymmetry, a clean control, and mutation kills; rejected model
+  judges, voting, generated labels, and probabilistic oracles for V0
+- Exact next action: run Ruff, format, strict mypy, unchanged no-key demo, build,
+  Twine, detached clean-checkout reproduction, and rollback absence checks; do
+  not start V1
+
+# Previous FirstRing systematic technique checkpoint
 
 - Date: 2026-08-05
 - Worktree: `portfolio_demos/worktrees/voice_receptionist_technique_dossier`

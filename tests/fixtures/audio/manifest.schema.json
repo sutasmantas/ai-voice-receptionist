@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://firstring.example/schemas/audio-harness-manifest-v0.json",
+  "title": "FirstRing V0 audio harness manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "case_id", "audio", "scenario", "scripted_events", "expected"],
+  "properties": {
+    "schema_version": {"const": "firstring.audio-harness-manifest/v0"},
+    "case_id": {"type": "string", "minLength": 1},
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "channels", "sample_rate_hz", "sample_width_bytes", "frame_count", "compression", "language", "speaker_case_id"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "channels": {"type": "integer", "minimum": 1},
+        "sample_rate_hz": {"type": "integer", "minimum": 1},
+        "sample_width_bytes": {"type": "integer", "minimum": 1},
+        "frame_count": {"type": "integer", "minimum": 1},
+        "compression": {"const": "NONE"},
+        "language": {"type": "string", "minLength": 2},
+        "speaker_case_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "scenario": {"type": "object"},
+    "scripted_events": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["sequence", "at_ms", "kind"],
+        "properties": {
+          "sequence": {"type": "integer", "minimum": 1},
+          "at_ms": {"type": "integer", "minimum": 0},
+          "kind": {"type": "string", "minLength": 1},
+          "turn_id": {"type": "string"},
+          "text": {"type": "string"},
+          "data": {"type": "object"}
+        }
+      }
+    },
+    "expected": {
+      "type": "object",
+      "required": ["transcript_finals", "critical_entities", "task_facts", "business_effect", "engine_event_kinds"]
+    }
+  }
+}

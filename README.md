@@ -50,6 +50,13 @@ calendar SaaS, OAuth flow or production persistence.
 
 ## Verification
 
+The additive [V0 deterministic audio harness](docs/V0_AUDIO_HARNESS.md) runs a
+committed stereo PCM/WAV fixture through the existing local engine, preserves
+raw scripted events separately from normalized fields, emits a byte-stable
+booking/CRM/handoff receipt, and kills seven frozen orchestration mutants. The
+fixture contains deterministic tone lanes, not recorded speech, so this is not
+ASR, VAD, TTS, telephone, latency, or production-quality evidence.
+
 ```powershell
 .\.venv\Scripts\python -m ruff check src tests evals
 .\.venv\Scripts\python -m ruff format --check src tests evals

@@ -1,0 +1,129 @@
+{
+  "schema_version": "firstring.audio-harness-manifest/v0",
+  "case_id": "v0-scripted-interruption-booking",
+  "audio": {
+    "path": "v0_call.wav",
+    "sha256": "198470b3276496e7f358ff3f8348757aa39084344b33c0f70a9738adc210880b",
+    "channels": 2,
+    "sample_rate_hz": 8000,
+    "sample_width_bytes": 2,
+    "frame_count": 9600,
+    "compression": "NONE",
+    "language": "en",
+    "speaker_case_id": "scripted-caller-01"
+  },
+  "scenario": {
+    "id": "v0-scripted-interruption-booking",
+    "title": "Scripted interruption followed by grounded booking",
+    "business_open": true,
+    "expected_entities": {
+      "name": "Mira Chen",
+      "email": "mira@northstar.example",
+      "phone": "+37060010001",
+      "timezone": "Europe/Vilnius",
+      "slot_start": "2026-08-03T06:00:00+00:00"
+    },
+    "turns": [
+      {
+        "at_ms": 0,
+        "text": "How long is an appointment?",
+        "intent": "faq"
+      },
+      {
+        "at_ms": 260,
+        "text": "Book Mira Chen at mira@northstar.example and +37060010001 for 2026-08-03T06:00:00+00:00 in Europe/Vilnius.",
+        "intent": "book",
+        "interrupt": true,
+        "entities": {
+          "name": "Mira Chen",
+          "email": "mira@northstar.example",
+          "phone": "+37060010001",
+          "timezone": "Europe/Vilnius",
+          "slot_start": "2026-08-03T06:00:00+00:00"
+        }
+      }
+    ]
+  },
+  "scripted_events": [
+    {"sequence": 1, "at_ms": 0, "kind": "audio_source_start", "data": {"frame": 0}},
+    {"sequence": 2, "at_ms": 35, "kind": "transcript_partial", "turn_id": "turn-1", "text": "How long"},
+    {"sequence": 3, "at_ms": 80, "kind": "transcript_final", "turn_id": "turn-1", "text": "How long is an appointment?"},
+    {"sequence": 4, "at_ms": 90, "kind": "end_of_turn", "turn_id": "turn-1"},
+    {"sequence": 5, "at_ms": 91, "kind": "llm_start", "turn_id": "turn-1", "data": {"placeholder": true}},
+    {"sequence": 6, "at_ms": 92, "kind": "tool_start", "turn_id": "turn-1", "data": {"tool": "faq_lookup"}},
+    {"sequence": 7, "at_ms": 100, "kind": "tool_end", "turn_id": "turn-1", "data": {"tool": "faq_lookup"}},
+    {"sequence": 8, "at_ms": 105, "kind": "llm_end", "turn_id": "turn-1", "data": {"placeholder": true}},
+    {"sequence": 9, "at_ms": 120, "kind": "agent_audio_start", "turn_id": "turn-1"},
+    {"sequence": 10, "at_ms": 260, "kind": "caller_interruption", "turn_id": "turn-2"},
+    {"sequence": 11, "at_ms": 260, "kind": "agent_audio_cancelled", "turn_id": "turn-1"},
+    {"sequence": 12, "at_ms": 295, "kind": "transcript_partial", "turn_id": "turn-2", "text": "Book Mira Chen at mira@northstar.example and"},
+    {"sequence": 13, "at_ms": 315, "kind": "caller_pause", "turn_id": "turn-2", "data": {"clause_internal": true}},
+    {"sequence": 14, "at_ms": 340, "kind": "transcript_final", "turn_id": "turn-2", "text": "Book Mira Chen at mira@northstar.example and +37060010001 for 2026-08-03T06:00:00+00:00 in Europe/Vilnius."},
+    {"sequence": 15, "at_ms": 350, "kind": "end_of_turn", "turn_id": "turn-2"},
+    {"sequence": 16, "at_ms": 351, "kind": "llm_start", "turn_id": "turn-2", "data": {"placeholder": true}},
+    {"sequence": 17, "at_ms": 352, "kind": "tool_start", "turn_id": "turn-2", "data": {"tool": "local_booking_and_crm"}},
+    {"sequence": 18, "at_ms": 360, "kind": "tool_end", "turn_id": "turn-2", "data": {"tool": "local_booking_and_crm"}},
+    {"sequence": 19, "at_ms": 365, "kind": "llm_end", "turn_id": "turn-2", "data": {"placeholder": true}},
+    {"sequence": 20, "at_ms": 380, "kind": "agent_audio_resumed", "turn_id": "turn-2"},
+    {"sequence": 21, "at_ms": 1200, "kind": "audio_source_end", "data": {"frame": 9600}},
+    {"sequence": 22, "at_ms": 1220, "kind": "effect_receipt", "data": {}}
+  ],
+  "expected": {
+    "transcript_finals": [
+      "How long is an appointment?",
+      "Book Mira Chen at mira@northstar.example and +37060010001 for 2026-08-03T06:00:00+00:00 in Europe/Vilnius."
+    ],
+    "critical_entities": [
+      {"field": "name", "value": "Mira Chen", "surface": "Mira Chen"},
+      {"field": "email", "value": "mira@northstar.example", "surface": "mira@northstar.example"},
+      {"field": "phone", "value": "+37060010001", "surface": "+37060010001"},
+      {"field": "timezone", "value": "Europe/Vilnius", "surface": "Europe/Vilnius"},
+      {"field": "slot_start", "value": "2026-08-03T06:00:00+00:00", "surface": "2026-08-03T06:00:00+00:00"}
+    ],
+    "task_facts": {
+      "name": "Mira Chen",
+      "email": "mira@northstar.example",
+      "phone": "+37060010001",
+      "timezone": "Europe/Vilnius",
+      "slot_start": "2026-08-03T06:00:00+00:00"
+    },
+    "business_effect": {
+      "outcome": "booked",
+      "booking": {
+        "id": "book_31212940e5",
+        "lead_id": "lead_505e3c6c8b",
+        "start_utc": "2026-08-03T06:00:00+00:00",
+        "end_utc": "2026-08-03T06:30:00+00:00",
+        "timezone": "Europe/Vilnius",
+        "idempotency_key": "lead_505e3c6c8b:2026-08-03T06:00:00+00:00"
+      },
+      "crm": {
+        "id": "crm_505e3c6c8b",
+        "external_key": "mira@northstar.example",
+        "fields": {
+          "full_name": "Mira Chen",
+          "email_address": "mira@northstar.example",
+          "phone_e164ish": "+37060010001",
+          "organization": "Voice caller",
+          "qualification_tier": "inbound",
+          "qualification_score": 100
+        }
+      },
+      "handoff": {"state": "delivered"}
+    },
+    "engine_event_kinds": [
+      "call_started",
+      "stt_partial",
+      "stt_final",
+      "faq_answered",
+      "assistant_response",
+      "assistant_interrupted",
+      "stt_partial",
+      "stt_final",
+      "booking_created",
+      "assistant_response",
+      "summary_created",
+      "handoff_delivered"
+    ]
+  }
+}

@@ -39,6 +39,9 @@ jobs:
     - name: Tests and coverage
       run: pytest -q --cov=firstring --cov-report=term-missing
 
+    - name: Deterministic audio harness
+      run: python scripts/run_v0_audio_gate.py
+
     - name: Package
       run: |
         python -m build
