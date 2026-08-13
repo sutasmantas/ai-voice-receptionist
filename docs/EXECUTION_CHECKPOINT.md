@@ -4,27 +4,35 @@
 - Worktree: `portfolio_demos/worktrees/firstring_v0_audio`
 - Branch: `agent/firstring-v0-audio-harness`
 - Public base: `17cec5360db720e19da4e4826989950bbcc60aad`
-- Gate: `PARTIAL`; implementation and local behavioral tests pass, while build,
-  detached-checkout, rollback, and hosted checks remain pending
+- Gate: local exit gate `PASS`; hosted checks remain pending, so V0 is not yet
+  closed and V1 remains blocked
+- Verified implementation commit:
+  `ea66eda8d89ede6af3fe6b815e478627a084e1a2`
 - Implemented: committed stereo PCM/WAV fixture and SHA-256 manifest; versioned
   JSON Schema; append-only scripted event recorder; immutable raw-script copy;
   relative-time normalized receipt; exact booking/CRM/handoff comparison; seven
   frozen mutants plus a clean control
 - Evidence:
   - focused harness tests — PASS (12 tests)
-  - full test suite with coverage — PASS (31 tests, 87.16% coverage)
+  - Ruff, format, strict mypy, unchanged no-key demo — PASS
+  - full test suite with coverage — PASS (31 tests, 87.18% coverage)
+  - sdist/wheel build and Twine — PASS
   - replay twice — PASS (byte-identical canonical JSON)
   - clean control — PASS
   - frozen mutants — PASS (7/7 killed)
+  - detached clean checkout — PASS (29 passed, 1 skipped, 87.18%; build and
+    Twine PASS)
+  - public-base rollback — PASS at `17cec5360db720e19da4e4826989950bbcc60aad`
+    (V0 absent; 17 passed, 1 skipped, 88.89%; build and Twine PASS)
 - Evidence boundary: the committed WAV contains deterministic tone lanes and the
   transcript/events are construction-known; this is orchestration evidence, not
   ASR, VAD, EOT, TTS, telephone, latency, model, or production-quality evidence
 - Test-method decision: adopted construction truth, operator/relation checks,
   information asymmetry, a clean control, and mutation kills; rejected model
   judges, voting, generated labels, and probabilistic oracles for V0
-- Exact next action: run Ruff, format, strict mypy, unchanged no-key demo, build,
-  Twine, detached clean-checkout reproduction, and rollback absence checks; do
-  not start V1
+- Exact next action: publish the scoped branch without rewriting `main`, require
+  hosted GitHub checks, then record the exact public head in the central toolbox
+  checkpoint; do not start V1
 
 # Previous FirstRing systematic technique checkpoint
 
